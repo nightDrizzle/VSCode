@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="button" onclick="getLocation()">获取地理位置</button>
+  <p id="p"></p>
+  <script>
+    let p = document.getElementById('p')
+    let success = (position) => {
+      console.log(position)
+      let arr = []
+      arr.push('十进制数的纬度:' + position.coords.latitude)
+      arr.push('十进制数的经度:' + position.coords.longitude)
+      arr.push('位置精度:' + position.coords.accuracy)
+      arr.push('海拔，海平面以上以米计:' + position.coords.altitude)
+      arr.push('位置的海拔精度:' + position.coords.altitudeAccuracy)
+      arr.push('方向，从正北开始以度计:' + position.coords.heading)
+      arr.push('速度，以米/每秒计:' + position.coords.speed)
+      arr.push('响应的日期/时间:' + position.coords.timestamp)
+      p.innerHTML = arr.join('<br>') // innerHTML会直接渲染<br>
+      // or p.innerText = arr.join('\n')
+    }
+    let getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success)
+      } else {
+        console.log('该浏览器不支持获取地理位置。')
+      }
+    }
+  </script>
+</body>
+
+</html>

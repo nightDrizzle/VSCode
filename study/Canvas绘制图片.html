@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,
+    div {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.querySelector("#canvas")
+    const ctx = canvas.getContext('2d')
+    const image = new Image()
+    image.src = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604741395543&di=a633f8107b9326d6964e9e5f3cbf4d8f&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F8efa82703458622a9588151ed5ff130953826771.jpg'
+    image.onload = function () {
+      canvas.width = this.naturalWidth
+      canvas.height = this.naturalHeight
+      ctx.drawImage(image, 0, 0, this.width, this.height, 0, 0, canvas.width, canvas.height)
+    }
+  </script>
+</body>
+
+</html>

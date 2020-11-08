@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    canvas.setAttribute("width", "500px")
+    canvas.setAttribute("height", "500px")
+    canvas.style.border = "1px solid black"
+    ctx.translate(250, 250) // 将起始点移动到画布中心
+    // const color = ["red", "orange", "yellow", "green", "cyan", "blue", "purple", "black"]
+    // let number = 0
+    // setInterval(function () {
+    //   // ctx.clearRect(-250, -250, 500, 500)
+    //   ctx.fillStyle = color[number % 7]
+    //   ctx.rotate(15 * Math.PI / 180) // 以起始点为中心，旋转15度
+    //   ctx.fillRect(0, 0, 100, 100)
+    //   number++
+    // }, 100)
+    ctx.fillStyle = "red"
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "orange"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "yellow"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "green"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "cyan"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "blue"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "purple"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+
+    ctx.fillStyle = "black"
+    ctx.rotate(45*Math.PI/180)
+    ctx.fillRect(0, 0, 100, 100)
+  </script>
+</body>
+
+</html>

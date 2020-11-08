@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getData(value) {
+      console.log(value.name, value.id)
+    }
+    function setData(value) {
+      console.log(value)
+    }
+    function getFun(callback) {
+      // 从外层函数内部传入参数
+      var value = {}
+      value.name = "zhangsan";
+      value.id = 3
+      callback(value)
+    }
+    function setFun(callback, value) {
+      callback(value)
+    }
+    getFun(getData)
+    // 从外界传入参数
+    setFun(setData, 1)
+  </script>
+</body>
+
+</html>

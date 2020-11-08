@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 300px;
+      background-color: orange;
+    }
+
+    /*
+     * 居中关键代码 （需要知道盒子的高度和宽度）
+     */
+    .box {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      /* 两种写法均可 */
+      /* margin: -150px -150px; */
+      margin-top: -150px;
+      margin-left:-150px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+
+</html>

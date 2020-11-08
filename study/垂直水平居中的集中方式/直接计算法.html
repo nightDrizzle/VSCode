@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 600px;
+      height: 600px;
+      background-color: darkcyan;
+      /* 如果没有这一行，内部的盒子margin-top属性会失效（也可以设置子盒子display: inline-block;） */
+      overflow: hidden;
+    }
+    .child {
+      width: 300px;
+      height: 300px;
+      background-color: darkgreen;
+    }
+    /* 居中关键代码（必须知道内外盒子的大小） */
+    .center {
+      /* margin的值为(parent.width-child.width) / 2 */
+      margin: 150px;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child center"></div>
+  </div>
+</body>
+</html>

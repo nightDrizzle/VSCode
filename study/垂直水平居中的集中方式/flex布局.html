@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*
+     * html和body需要撑满浏览器
+     * 如果父盒子是div则不需要这段代码
+     */
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    /*居中关键代码*/
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+
+</html>

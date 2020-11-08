@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    window.localStorage.setItem("myName", "lanye")
+    // 需要存入数值类型的数据，采用JSON字符串。
+    var lanye = {
+      name:"蓝夜",
+      id:3
+    }
+    window.sessionStorage.setItem("lanye",JSON.stringify(lanye))
+    var name = window.localStorage.getItem("myName")
+    var lanye = window.sessionStorage.getItem("lanye")
+    console.log(name,JSON.parse(lanye).name)
+  </script>
+</body>
+
+</html>

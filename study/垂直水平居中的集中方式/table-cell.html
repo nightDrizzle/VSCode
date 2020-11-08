@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    .parent {
+      width: 500px;
+      height: 500px;
+      background-color: cyan;
+    }
+
+    /* 居中关键代码 */
+    .center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .child {
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent center">
+    <div class="child"></div>
+  </div>
+</body>
+
+</html>

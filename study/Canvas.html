@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"></canvas>
+  <canvas id="round" width="300" height="300" style="border: 1px solid black;"></canvas>
+  <script>
+    var canvas = document.querySelector("#canvas")
+    var ctx = canvas.getContext('2d') // 获取到CanvasRenderingContext2D对象
+    ctx.lineWidth = 10
+    // 空心矩形
+    ctx.strokeRect(75, 140, 150, 110) // 直接绘制一个矩形，不受fill的影响
+    // 实心矩形
+    ctx.fillRect(130, 190, 40, 60) // 绘制并填充矩形
+    // 画线路
+    ctx.beginPath() // 清空子路径列表开始一个新的路径
+    ctx.moveTo(50, 140) // 将一个新的子路径的起点移动到该坐标
+    ctx.lineTo(150, 60) // 使用直线连接子路径的结束点到该坐标
+    ctx.lineTo(250, 140)
+    ctx.closePath() // 将起点和终点连接起来
+    ctx.stroke() // 绘制当前已经存在的路径
+    ctx.rect(190, 50, 25, 60) // 创建一个矩形路径
+    ctx.fill() // 填充当前或已存在的路径的方法（可以填充rect或者beginPath创建的路径）
+  </script>
+  <script>
+    var round = document.querySelector('#round')
+    var rtx = round.getContext('2d')
+    // 绘制一个空心圆
+    rtx.beginPath()
+    rtx.arc(50,150,50,0,2*Math.PI,true) // 创建一个圆弧路径
+    rtx.strokeStyle = "red" // 设置边线颜色
+    rtx.stroke()
+    // 绘制一个实心圆
+    rtx.beginPath()
+    rtx.arc(250,150,50,0,2*Math.PI,true)
+    rtx.fillStyle = "green" // 设置填充颜色
+    rtx.fill()
+  </script>
+</body>
+
+</html>
