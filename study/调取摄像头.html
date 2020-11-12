@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>调取摄像头并拍照</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <video autoplay></video>
+  <!-- 拍照模块 -->
+  <div id="picture" style="position:absolute;right: 0;top: 0;">
+    <canvas id="canvas" width="700px" height="500px"></canvas>
+    <button onclick="photograph()" id="btn" style="margin-right: 50px;">点击拍照</button>
+  </div>
+  <script>
+    var ctx = document.querySelector('#canvas').getContext('2d')
+    var btn = document.querySelector('#btn')
+    var video = document.querySelector('video')
+    var constraints = window.constraints = {
+      audio: false,
+      video: {
+        width: 700,
+        height: 500
+      }
+    };
+    // IE浏览器不支持mediaDevices
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(function (stream) {
+        video.srcObject = stream;
+
+      })
+      .catch(function (error) {
+        console.log(error.name + ":" + error.message);
+      });
+    // 点击拍照向画布上画video此时的图像
+    function photograph() {
+      ctx.drawImage(video, 0, 0, 700, 500)
+    }
+  </script>
+</body>
+
+</html>
