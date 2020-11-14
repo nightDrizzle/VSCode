@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dropzone {
+      border: 3px solid purple;
+      background-color: cadetblue;
+      height: 80px;
+      width: 500px;
+    }
+
+    #source {
+      border: 1px solid;
+      background-color: coral;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 draggable="true" id="source">拖动这个元素</h2>
+  <div class="dropzone"></div>
+  <div class="dropzone"></div>
+  <div class="dropzone"></div>
+  <div class="dropzone"></div>
+  <script>
+    var flag_drag = true
+    var flag_dragend = true
+    var flag_dragover = true
+    var flag_dragstart = true
+    var flag_dragenter = true
+    var flag_dragleave = true
+    var flag_drop = true
+    document.addEventListener('dragstart', function (ev) {
+      if (flag_dragstart) {
+        console.log("dragstart事件触发")
+        flag_dragstart = false
+      }
+      ev.dataTransfer.setData('text/plain', ev.target.id)
+    })
+    document.addEventListener('drag', function (ev) {
+      if (flag_drag) { // 删除if语句drag事件将持续触发
+        console.log("drag事件持续触发")
+        flag_drag = false
+      }
+    })
+    document.addEventListener('dragend', function (ev) {
+      if (flag_dragend) {
+        console.log("dragend事件触发")
+        flag_dragend = false
+      }
+    })
+    document.addEventListener('dragover', function (ev) {
+      ev.preventDefault() // 阻止浏览器默认禁止拖放的行为
+      if (flag_dragover) {// 删除if语句dragover事件将持续触发
+        console.log("dragover事件持续触发")
+        flag_dragover = false
+      }
+    })
+    document.addEventListener('dragenter', function (ev) {
+      if (flag_dragenter) {
+        console.log("dragenter事件触发")
+        flag_dragenter = false
+      }
+    })
+    document.addEventListener('dragleave', function (ev) {
+      if (flag_dragleave) {
+        console.log("dragleave事件触发")
+        flag_dragleave = false
+      }
+    })
+    document.addEventListener('drop', function (ev) {
+      if (flag_drop) {
+        console.log("drop事件触发")
+        flag_drop = false
+      }
+      ev.preventDefault()
+      // 设置只在dropzone中可以放置，document中不能放置
+      if (ev.target.className === "dropzone") {
+        var data = ev.dataTransfer.getData('text')
+        ev.target.appendChild(document.getElementById(data))
+      }
+    })
+
+  </script>
+</body>
+
+</html>

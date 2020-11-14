@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DataTransfer</title>
+  <style>
+    #source {
+      border: 1px solid red;
+      padding: 0.5em;
+      width: 50%;
+    }
+
+    #target {
+      border: 2px solid;
+      padding: 2em;
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 draggable="true" id="source" ondragstart="dragstart(event)">拖动此元素</h2>
+  <div id="target" ondragover="dragover(event)" ondrop="drop(event)">
+    <span>放置区域</span>
+  </div>
+  <script>
+    function dragstart(ev) {
+      ev.target.style.border = "dashed";
+      ev.dataTransfer.setData('id',ev.target.id)
+      ev.target.innerHTML = "正在拖动"
+
+    }
+    function dragover(ev) {
+      ev.preventDefault()
+    }
+    function drop(ev) {
+      ev.preventDefault()
+      var data = ev.dataTransfer.getData('id')
+      var source = document.getElementById(data)
+      source.innerHTML = "拖动此元素"
+      source.style.border = "1px solid red"
+      ev.target.appendChild(document.getElementById(data))
+      ev.dataTransfer.clearData()
+      console.log(ev.dataTransfer.getData("text"))
+    }
+  </script>
+</body>
+
+</html>
