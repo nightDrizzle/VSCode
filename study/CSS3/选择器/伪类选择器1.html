@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 如果无效，清理以下浏览器的历史记录，或者修改a链接的href */
+    a {
+      background-color: #fff;
+    }
+
+    /* ！按照 link-visited-hover-active 的先后顺序写 */
+    a:link {
+      color: orange;
+    }
+
+    /* visited通常只用来修改color，浏览器会对其他属性的设置进行限制，可能会无效 */
+    a:visited {
+      color: black;
+      /* 在a标签的默认样式中设置颜色后才能生效 */
+      background-color: orangered;
+    }
+
+    a:hover {
+      background-color: cyan;
+    }
+
+    a:active {
+      background-color: violet;
+      font-size: 40px;
+    }
+
+    input:focus,
+    textarea:focus {
+      background-color: yellow;
+    }
+
+    p:first-letter {
+      color: red;
+      font-size: 200%;
+    }
+
+    p#english:first-line {
+      background-color: yellow;
+    }
+    p.insert:before {
+      content: "start-";
+    }
+    p.insert:after {
+      content: "（-end）";
+    }
+  </style>
+</head>
+
+<body>
+  <main class="pseudoClass">
+    <section class="a" style="display: inline-block;">
+      <a href="#p1">链接1</a>
+      <a href="#p2">链接1</a>
+      <a href="#p3">链接1</a>
+      <p id="p1">这是一行段落</p>
+      <p id="p2">这是一行段落</p>
+      <p id="p3">这是一行段落</p>
+    </section>
+    <section class="form" style="display: inline-block;">
+      <input type="text">
+      <textarea style="resize: none;" name="" id="" cols="15" rows="3"></textarea>
+    </section>
+    <section class="text">
+      <p class="insert">一行段落的文字</p>
+      <p class="insert">二行段落的文字</p>
+      <p id="english">To stop the degradation of the planet's natural environment and to build a future in which humans
+        live in
+        harmony with nature, by; conserving the world's biological diversity, ensuring that the use of renewable natural
+        resources is sustainable, and promoting the reduction of pollution and wasteful consumption.</p>
+    </section>
+  </main>
+</body>
+
+</html>

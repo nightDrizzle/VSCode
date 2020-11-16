@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    background: url(../../img/1.jpg) no-repeat;
+    background-size: cover;/*图片充满背景*/
+  }
+
+  div {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    border: 20px dashed;
+    padding: 30px;
+    display: inline-block;
+    margin: 30px;
+  }
+
+  .bg-img {
+    background-image: url(../../img/oto.jpg);/*背景图片*/
+    background-repeat: no-repeat;/*背景图片重复属性*/
+    background-size: cover;/*可以填写px,百分比,cover*/
+    background-origin: border-box; /*背景从border,padding还是content算起，image与origin一起使用*/
+  }
+
+  #div1 {
+    background-origin: padding-box;
+  }
+
+  #div2 {
+    background-origin: content-box;
+  }
+
+  .bg-color {
+    padding: 30px;
+    background-color: chartreuse;
+    background-clip: border-box;/*背景从border,padding还是content算起，clip与color一起使用*/
+  }
+
+  #div3 {
+    background-clip: padding-box;
+  }
+  #div4 {
+    background-clip: content-box;
+  }
+</style>
+
+<body>
+  <section>
+    <div class="bg-img"></div>
+    <div class="bg-img" id="div1"></div>
+    <div class="bg-img" id="div2"></div>
+  </section>
+  <section>
+    <div class="bg-color"></div>
+    <div class="bg-color" id="div3"></div>
+    <div class="bg-color" id="div4"></div>
+  </section>
+</body>
+
+</html>

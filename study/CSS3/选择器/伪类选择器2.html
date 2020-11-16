@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div,
+    p,
+    h1,
+    h2 {
+      border: 1px solid;
+      font-size: 12px;
+      width: 500px;
+    }
+
+    /* 在该层级中是第一个子元素的某个名称的标签（同时满足才能匹配到） */
+    h1:first-child {
+      background-color: red;
+    }
+
+    /* 在该层级中是最后一个子元素的某个名称的标签（同时满足才能匹配到） */
+    h1:last-child {
+      background-color: yellow;
+    }
+
+    /* 在该层级中是第i个子元素的某个名称的标签 */
+    h1:nth-child(3) {
+      background-color: #333;
+    }
+
+    div {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    /* 在所有独立的层级中第一个该类型的元素 */
+    p:first-of-type {
+      background-color: blue;
+    }
+
+    /* 在所有独立的层级中最后一个该类型的元素 */
+    p:last-of-type {
+      background-color: tomato;
+    }
+
+    /* 在所有独立的层级中第i个该类型的元素 */
+    p:nth-of-type(2) {
+      background-color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="child">
+    <h1>一级标题</h1>
+    <p>古诗赏析（第一个p）</p>
+    <div id="box1">
+      <p>落霞与孤鹜齐飞（第一个p）</p>
+      <p>…………</p>
+      <h1>一级标题（是h1但不是第一个）</h1>
+      <p>秋水共长天一色（最后一个p）</p>
+      <h1>一级标题</h1>
+    </div>
+    <div id="box2">
+      <h2>一级标题（是第一个但不是h1）</h2>
+      <p>国破山河在（第一个p）</p>
+      <p>城春草木深。</p>
+      <p>感时花溅泪</p>
+      <p>恨别鸟惊心。（最后一个p）</p>
+    </div>
+  </section>
+</body>
+
+</html>

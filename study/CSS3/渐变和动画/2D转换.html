@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      font-size: 12px;
+      width: 100px;
+      height: 100px;
+      border: 1px solid;
+      display: inline-block;
+      background-color: tomato;
+    }
+
+    section {
+      background-color: turquoise;
+      margin: 10px;
+      height: 200px;
+    }
+
+    span {
+      position: absolute;
+    }
+
+    .translate div {
+      background-color: blue;
+    }
+
+    /* 平移元素（x轴（右），y轴（下）） */
+    #translate {
+      transform: translate(50px, 50px);
+    }
+
+    #translateX {
+      transform: translateX(50px);
+    }
+
+    #translateY {
+      transform: translateY(50px);
+    }
+
+    .scale div {
+      margin: 50px 100px 0 0;
+      background-color: red;
+    }
+
+    /* 缩放元素（宽的倍数，高的倍数） */
+    #scale {
+      transform: scale(2, 2);
+    }
+
+    /* 缩放元素（宽的倍数） */
+    #scaleX {
+      transform: scaleX(2);
+    }
+
+    /* 缩放元素（高的倍数） */
+    #scaleY {
+      left: 200px;
+      transform: scaleY(2);
+    }
+
+    .skew div {
+      margin: 20px 0px 0 0;
+      background-color: violet;
+    }
+
+    /* 旋转元素 */
+    #rotate {
+      transform: rotate(45deg);
+    }
+
+    .rotate div {
+      margin: 20px -106px 0 0;
+      background-color: green;
+    }
+
+    /* 倾斜元素 */
+    #skew {
+      transform: skew(0.1turn, 0.1turn);
+    }
+
+    /* 倾斜元素（X） */
+    #skewX {
+      transform: skewX(0.1turn);
+    }
+
+    /* 倾斜元素（Y） */
+    #skewY {
+      transform: skewY(0.1turn);
+    }
+
+    .matrix div {
+      margin: 20px 0px 0 0;
+    }
+
+    #matrix {
+      transform: matrix(1, 0.7, 0.7, 1, 100, 10);
+    }
+  </style>
+</head>
+
+<body>
+  <section class="translate">
+    <span>translate</span>
+    <div id="translate">
+      <span>translate(50px, 50px)</span>
+    </div>
+    <div id="translateX">
+      <span>translateX(50px)</span>
+    </div>
+    <div id="translateY">
+      <span>translateY(50px)</span>
+    </div>
+  </section>
+  <section class="scale">
+    <span>scale</span>
+    <div id="none">
+      <span>none</span>
+    </div>
+    <div id="scale">
+      <span>scale(2, 2)</span>
+    </div>
+    <div id="scaleX">
+      <span>scaleX(2)</span>
+    </div>
+    <div id="scaleY">
+      <span>scaleY(2)</span>
+    </div>
+  </section>
+
+  <section class="rotate">
+    <span>rotate</span>
+    <div id="none">
+      <span>none</span>
+    </div>
+    <div id="rotate">
+      <span>rotate(45deg)</span>
+    </div>
+  </section>
+  <section class="skew">
+    <span>skew</span>
+    <div id="none">
+      <span>none</span>
+    </div>
+    <div id="skew">
+      <span>skew</span>
+    </div>
+    <div id="skewX">
+      <span>skewX</span>
+    </div>
+    <div id="skewY">
+      <span>skewY</span>
+    </div>
+  </section>
+  <section class="matrix">
+    <span>matrix</span>
+    <div id="none">
+      <span>none</span>
+    </div>
+    <div id="matrix">
+      <span>matrix</span>
+    </div>
+  </section>
+
+</body>
+
+</html>

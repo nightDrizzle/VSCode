@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+
+    /* 线性渐变（默认）（上下） */
+    #simple-linear {
+      background: linear-gradient(blue, red);
+    }
+
+    /*线性渐变（左右） */
+    #horizontal-gradient {
+      background: linear-gradient(to right, blue, red);
+    }
+
+    /*线性渐变（对角线） */
+    #diagonal-gradient {
+      background: linear-gradient(to right bottom, blue, red);
+    }
+
+    /* 线性渐变（角度） */
+    #angled-gradient {
+      background: linear-gradient(90deg, blue, red);
+    }
+
+    /* 线性渐变（多种颜色+颜色终止位置） */
+    #auto-spaced-linear-gradient {
+      background: linear-gradient(purple 10%, red 30%, yellow 50%, green 70%, blue);
+    }
+
+    /* 颜色之间使用实线过渡（两个颜色终止点设为同一个值） */
+    .striped {
+      background: linear-gradient(to bottom right, cyan 50%, orangered 50%);
+    }
+
+    /* 修改渐变颜色中心点 */
+    .color-hint {
+      background: linear-gradient(blue, 30%, red);
+    }
+
+    /* 未修改的渐变颜色参考 */
+    .simple-linear {
+      background: linear-gradient(blue, red);
+    }
+
+    /* 创建渐变条纹 */
+    .multiposition-stops {
+      background: linear-gradient(to left,
+          lime 20%, red 30%, red 45%, cyan 55%, cyan 70%, yellow 80%);
+      background: linear-gradient(to left,
+          lime 20%, red 30% 45%, cyan 55% 70%, yellow 80%);
+    }
+
+    /* 创建不渐变条纹 */
+    .multiposition-stop2 {
+      background: linear-gradient(to left,
+          lime 25%, red 25%, red 50%, cyan 50%, cyan 75%, yellow 75%);
+      background: linear-gradient(to left,
+          lime 25%, red 25% 50%, cyan 50% 75%, yellow 75%);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="simple-linear">
+  </div>
+  <div id="horizontal-gradient">
+  </div>
+  <div id="diagonal-gradient">
+  </div>
+  <div id="angled-gradient">
+  </div>
+  <div id="auto-spaced-linear-gradient">
+  </div>
+  <div class="striped">
+  </div>
+  <div class="color-hint">
+  </div>
+  <div class="simple-linear">
+  </div>
+  <div class="multiposition-stops"></div>
+  <div class="multiposition-stop2"></div>
+</body>
+
+</html>

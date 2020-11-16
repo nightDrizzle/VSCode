@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      display: inline-block;
+      margin: 30px;
+      border: 5px solid black;
+      background-color: yellow;
+      width: 10pc;
+      height: 10pc;
+      background-clip: content-box;
+    }
+
+    .shadow .container {
+      /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
+      box-shadow: 10px 10px 10px 5px darkred;
+    }
+
+    #div1 {
+      /* 内部阴影 */
+      box-shadow: inset 1em 1em 0.2em blue;
+    }
+
+    #div2 {
+      /* 设置多个阴影 */
+      box-shadow: 10px 10px 10px 5px darkred, inset 1em 1em 0.2em blue, -1em -1em 0.5em cyan;
+    }
+
+    .radius .container {
+      /*左上 | 右上 | 左下 | 右下 */
+      border-radius: 10% 30% 50% 70%;
+    }
+
+    #div3 {
+      /* 四个圆角同一个值 */
+      border-radius: 1em;
+    }
+
+    #div4 {
+      /* 左上和右下 | 右上和左下 */
+      border-radius: 3em 1em;
+    }
+
+    #div5 {
+      /* 圆/椭圆 */
+      border-radius: 100%;
+    }
+
+    #div6 {
+      /* y轴缺少的长度变为直线 */
+      border: 1px solid;
+      /* x轴 | y轴 */
+      border-top-left-radius: 5pc 2pc;
+      border-top-right-radius: 5pc 3pc;
+      border-bottom-right-radius: 5pc 4pc;
+      border-bottom-left-radius:5pc 5pc;
+    }
+    #div7 {
+      border: 50px solid black;
+      border-image: url(https://interactive-examples.mdn.mozilla.net/media/examples/border-diamonds.png) 30 round;
+      background-image: url();
+      background-size: cover;
+      background-origin: content-box;
+    }
+    .border-image {
+      width:100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="shadow">
+      <div class="container"></div>
+      <div class="container" id="div1"></div>
+      <div class="container" id="div2"></div>
+    </section>
+    <section class="radius">
+      <div class="container"></div>
+      <div class="container" id="div3"></div>
+      <div class="container" id="div4"></div>
+      <div class="container" id="div5"></div>
+      <div class="container" id="div6"></div>
+    </section>
+    <section class="image">
+      <div class="border-image" id="div7">
+      </div>
+    </section>
+  </main>
+  <script>
+  </script>
+</body>
+
+</html>

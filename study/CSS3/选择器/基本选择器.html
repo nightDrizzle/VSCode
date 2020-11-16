@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 标签选择器 */
+    div {
+      display: inline-block;
+      background-color: cyan;
+    }
+
+    /* 类选择器 */
+    .basic {
+      background-color: lightgreen;
+    }
+
+    /* id选择器 */
+    #div {
+      border: 5px dashed;
+      box-sizing: border-box;
+    }
+
+    /* 属性选择器 全字匹配 */
+    div[name="div"] {
+      width: 100px;
+      height: 100px;
+      border: 1px solid;
+    }
+
+    /* 属性选择器 包含匹配(需要空格) */
+    div[class~="box"] {
+      border-radius: 10%;
+    }
+
+    /* 属性选择器 包含匹配（有无空格均可） */
+    div[class*="box"] {
+      box-shadow: 10px 10px 10px orangered;
+    }
+
+    /* 属性选择器 前缀匹配 */
+    div[class^=small] {
+      width: 50px;
+      height: 50px;
+      background-color: #000;
+    }
+
+    /* 属性选择器 后缀匹配 */
+    div[class$="div"] {
+      width: 50px;
+      height: 50px;
+      background-color: #ff0000;
+    }
+
+    /* 属性选择器 不区分大小写 */
+    div[class*=ll i] {
+      box-shadow: 10px 10px 10px darkred;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section class="basic">
+      <div name="div" class="boxcontainer"></div>
+      <div name="div" class="box container"></div>
+      <div name="box" class="small-box"></div>
+      <div id="div" name="box" class="smaLL-div"></div>
+    </section>
+  </main>
+</body>
+
+</html>

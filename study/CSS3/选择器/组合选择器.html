@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 相邻兄弟选择器（A~B:选择A之后的第一个B元素兄弟） */
+    h1+h2 {
+      background-color: blue;
+    }
+
+    /* 通用兄弟选择器（A~B:选择A所有同级B元素兄弟） */
+    h1~h4 {
+      background-color: blueviolet;
+    }
+
+    span {
+      background-color: yellow;
+    }
+
+    /* 子选择器 只匹配子元素 */
+    h2>span {
+      font-size: 10px;
+      width: 50%;
+      background-color: orangered;
+    }
+
+    /* 后代选择器 匹配子元素及其所有后代 */
+    h3 span {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <section class="combination">
+      <hgroup>
+        <h1>一级标题</h1>
+        <h2>二级标题<span>文字片段1<span>文字片段2</span></span></h2>
+        <h3>三级标题<span>文字片段1<span>文字片段2</span></span></h3>
+        <h4>四级标题</h4>
+        <h2>二级标题</h2>
+        <h4>四级标题</h4>
+      </hgroup>
+    </section>
+  </main>
+</body>
+
+</html>
