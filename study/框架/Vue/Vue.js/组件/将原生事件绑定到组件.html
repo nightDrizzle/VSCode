@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-input label="1" @focus="fun" name='com' v-model="msg"></my-input>{{msg}}
+  </div>
+
+  <script>
+    Vue.component('my-input', {
+      inheritAttrs: false,
+      props: ['label','value'],
+      computed: {
+        inputListeners: function () {
+          var vm = this
+          return Object.assign({},
+            this.$listeners,
+            {
+              input: function (event) {
+                vm.$emit('input', event.target.value)
+              }
+            }
+          )
+        }
+      },
+      template: `
+    <div>
+      {{ label }}
+      <input
+        v-bind="$attrs"
+        :value="value"
+        v-on="inputListeners"
+      >
+    </div>
+  `
+    })
+    new Vue({
+      el: "#app",
+      data: {
+        msg: 'massage',
+        label: 'label'
+      },
+      methods:{
+        fun() {
+          console.log(1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

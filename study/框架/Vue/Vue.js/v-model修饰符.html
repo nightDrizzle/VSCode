@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    input {
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 触发了input事件后才修改msg的值 -->
+    <input v-model="msg">{{msg}}
+    <!-- 触发了change事件后才修改lazy的值 -->
+    <input v-model.lazy="lazy">{{lazy}}
+    <!-- age的默认值为字符串形式的数字，.number可转成number类型 -->
+    <input v-model.number="age" type="number" placeholder="将value转为number类型">
+    <!-- 过滤首位空格 -->
+    <input v-model.trim="filter">
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        msg:"msg",
+        lazy:"lazy",
+        age:undefined,
+        filter:"filter"
+      }
+    })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    button {
+      height: 36px;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    input {
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" @click="appEvent">
+    <div class="parent" @click="parentEvent">
+      <!-- 在默认情况下，父元素和子元素都会触发点击事件 -->
+      <!-- 使用.stop事件修饰符阻止冒泡 -->
+      <button class="child" @click.stop="childEvent">阻止冒泡</button></button>
+    </div>
+    <form action="" method="POST">
+      <input type="text">
+      <!-- 使用.prevent事件修饰符阻止默认跳转行为 -->
+      <!-- 使用.stop事件修饰符阻止冒泡 -->
+      <button type="submit" @click.prevent.stop="handleSubmit">提交</button>
+    </form>
+    <div class="parent" @click.self="parentEvent">
+      <!-- 在默认情况下，父元素和子元素都会触发点击事件 -->
+      <!-- 使用.self使父元素只触发自身的事件，不触发冒泡事件 -->
+      <button class="child" @click="childEvent">只触发自身事件</button></button>
+    </div>
+    <button @mouseover.once="onceEvent">只触发一次</button>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        appEvent() {
+          console.log("app Event triggered")
+        },
+        parentEvent() {
+          console.log("parent Event triggered")
+        },
+        childEvent() {
+          console.log("child Event triggered")
+        },
+        handleSubmit() {
+          let xhr = new XMLHttpRequest()
+          xhr.open("GET","asset/1.txt",true)
+          xhr.onload = function() {
+            console.log(xhr.response)
+          }
+          xhr.send()
+        },
+        onceEvent() {
+          console.log(1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

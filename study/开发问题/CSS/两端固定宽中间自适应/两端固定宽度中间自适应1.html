@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    #father {
+      /*(core 2rows)*/
+      display: flex;
+      flex-wrap: nowrap;
+      
+      width: 100vw;
+      text-align: center;
+      height: 10vh;
+    }
+
+    #son1 {
+      /*(core)*/
+      width: 200px;
+      background-color: blue;
+    }
+
+    #son2 {
+      /*(core)*/
+      width: calc(100vw - 400px);
+      background-color: red;
+    }
+
+    #son3 {
+      /*(core)*/
+      width: 200px;
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="father">
+    <div id="son1">
+      <h3>宽度固定</h3>
+    </div>
+    <div id="son2">
+      <h3>宽度自适应(用flex弹性盒布局)</h3>
+    </div>
+    <div id="son3">
+      <h3>宽度固定</h3>
+    </div>
+  </div>
+</body>
+
+</html>

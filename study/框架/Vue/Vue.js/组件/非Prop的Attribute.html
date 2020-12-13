@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <bootstrap-date-input data-date-picker="activated" class="date-picker-theme-dark"></bootstrap-date-input>
+  </div>
+
+  <script>
+    Vue.component('bootstrap-date-input', {
+      props: ['data1'],
+      template: '<div>1<div>2</div></div>'
+    })
+    new Vue({
+      el: "#app",
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

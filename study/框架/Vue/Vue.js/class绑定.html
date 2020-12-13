@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .container {
+      background-color: red;
+      width: 100px;
+      height: 100px;
+    }
+
+    input {
+      width: 80px;
+      height: 42px;
+      margin: 10px;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+    }
+
+    .bg {
+      background-color: blue;
+    }
+
+    .border {
+      border: 2px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container" :class="classObj"></div>
+    <input type="button" @click="changeBox" value="切换大小"></input>
+    <input type="button" @click="changeColor" value="切换颜色"></input>
+    <input type="button" @click="changeBorder" value="切换边框"></input>
+    <div class="container" :class="classArr"></div>
+    <input type="button" @click="addBorderClass" value="添加边框"></input>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        classObj: {
+          box: true,
+          bg: true,
+          border: true
+        },
+        //可以使用数组方法添加或者删除某个类
+        classArr:['box','bg']
+      },
+      methods: {
+        changeColor() {
+          this.classObj.bg = !this.classObj.bg
+        },
+        changeBorder() {
+          this.classObj.border = !this.classObj.border
+        },
+        changeBox() {
+          this.classObj.box = !this.classObj.box
+        },
+        addBorderClass() {
+          this.classArr.push("border")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

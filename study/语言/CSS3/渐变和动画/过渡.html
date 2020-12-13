@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: cyan;
+      display: inline-block;
+    }
+
+    .content {
+      transition-property: width, height;
+      transition-duration: 2s, 1s;
+      transition-timing-function: ease, ease;
+      transition-delay: 100ms, 100ms;
+    }
+
+    .content:hover {
+      width: 200px;
+      height: 200px;
+    }
+
+    .box {
+      background-color: blue;
+      transition-property: background-color;
+      transition-duration: 2s;
+      transition-timing-function: linear;
+      transition-delay: 0ms;
+    }
+
+    .box:hover {
+      background-color: orange;
+    }
+
+    .container {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+      transition: all 2s linear 1s;
+    }
+
+    /*鼠标一直放在元素上*/
+    .container:hover {
+      margin-left: 500px;
+    }
+
+    .input {
+      transition: all 1s linear 100ms;
+    }
+
+    .input:focus {
+      background-color: orangered;
+    }
+
+    /*过渡前的状态*/
+    .bg-blue {
+      background-color: blue;
+    }
+
+    /*过渡后的状态*/
+    .bg-red {
+      background-color: red;
+    }
+
+    h1 {
+      /*添加过渡*/
+      transition: all 500ms linear 0ms;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <span>鼠标放在上面</span>
+  </div>
+  <div class="content">
+    <span>鼠标放在上面</span>
+  </div>
+  <div class="container">
+    <span>鼠标跟着移动</span>
+  </div>
+  <input class="input" type="text" value="鼠标点击获取焦点">
+  <h1 class="bg-blue">利用JS实现过渡（点我）</h1>
+  <script>
+    var h1 = document.querySelector('h1')
+    /*实现点击标签完成蓝-红或者红-蓝的背景色切换*/
+    h1.addEventListener('click', function () {
+      if (this.className === "bg-blue") {
+        this.className = "bg-red"
+      } else {
+        this.className = "bg-blue"
+      }
+
+    })
+  </script>
+</body>
+
+</html>

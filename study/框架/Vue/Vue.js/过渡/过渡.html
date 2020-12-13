@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <style>
+    /*
+     * Vue过渡分为两大阶段，进入和离开（进入前，进入时，进入后，离开前，离开时，离开后）
+     * v-enter-active,v-leave-active设置进入时和离开时的过渡效果
+     * v-enter，v-leave-to设置开进入前和离开后的初末状态
+     */
+    /*相当于添加过渡*/
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: all .5s;
+    }
+
+    /*相当于过渡前的状态*/
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+  </style>
+  <div id="app">
+    <button @click="show=!show">过渡</button>
+    <transition appear name="fade">
+      <p v-if="show">hello</p>
+    </transition>
+    <button @click="visible1=!visible1">自定义过渡类名</button>
+    <transition appear enter-active-class="animated tada" leave-active-class="animated bounceOutRight" name="myanimate">
+      <p v-if="visible1">hello</p>
+    </transition>
+    <button @click="visible2=!visible2">JS钩子</button>
+    <transition duration="300" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+      <p v-if="visible2">hello</p>
+    </transition>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        show: true,
+        visible1: true,
+        visible2: true
+      },
+      methods: {
+        beforeEnter: function (el) {
+          el.style.opacity = 0
+          el.style.transformOrigin = 'left'
+        },
+        enter: function (el, done) {
+          Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+          Velocity(el, { fontSize: '1em' }, { complete: done })
+        },
+        afterEnter: function (el) {
+        },
+        enterCancelled: function (el) {
+        },
+        beforeLeave: function (el) {
+        },
+        leave: function (el, done) {
+          Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+          Velocity(el, { fontSize: '1em' }, { complete: done })
+        },
+        afterLeave: function (el) {
+        },
+        leaveCancelled: function (el) {
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

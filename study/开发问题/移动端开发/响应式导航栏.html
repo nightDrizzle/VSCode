@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .left-box {
+      float: left;
+      margin-top: 3px;
+    }
+
+    .nav-bar {
+      /*由于li浮动,ul没有高度*/
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .nav {
+      padding: 15px 0;
+      background-color: #222;
+    }
+
+    .nav-button {
+      float: right;
+      display: none;
+    }
+
+    .nav-item {
+      font-size: 20px;
+      font-weight: 700;
+      list-style: none;
+      float: left;
+      padding: 0 30px;
+    }
+
+    .nav-left {
+      list-style: none;
+      font-size: 20px;
+      font-weight: 700;
+      float: left;
+      margin: -4px 30px 0 140px;
+    }
+
+    .nav-right {
+      font-size: 14px;
+      font-weight: 500;
+      float: right;
+      margin-top: 3px;
+      margin-right: 120px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: blue;
+    }
+
+    @media screen and (max-width:768px) {
+      .nav {
+        width: 100%;
+        padding: 0;
+      }
+
+      .nav-button {
+        float: right;
+        display: initial;
+      }
+
+      .nav-left {
+        margin: 0 0 0 30px;
+      }
+
+      .nav-bar {
+        opacity: 0;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        background-color: #222;
+        transition: all 200ms linear 0ms;
+      }
+
+      .nav-item {
+        clear: both;
+        padding: 15px;
+        width: 100%;
+        border-bottom: 2px solid rgb(1, 7, 97);
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .left-box {
+        width: 100%;
+        height: 60px;
+        background-color: #000;
+        margin: 0;
+        /*与height相等让文本垂直居中*/
+        line-height: 60px;
+        /* margin:-10px 0 0 10px ; */
+      }
+
+      button {
+        margin-right: 20px;
+        background-color: #333;
+        color: white;
+        padding: 5px;
+        border: none;
+        border-radius: 10%;
+        cursor: pointer;
+
+      }
+
+      hr {
+        color: white;
+        margin: 4px;
+        background-color: #ffffff;
+      }
+    }
+
+    @media screen and (min-width:768px) and (max-width:1200px) {
+      .nav-item-hidden {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="left-box">
+      <li class="nav-left"><a href="//baidu.com">首页</a></li>
+      <div class="nav-button">
+        <button onclick="showNavBar()">
+          <hr width="20px">
+          <hr width="20px">
+          <hr width="20px">
+        </button>
+      </div>
+    </div>
+    <ul class="nav-bar">
+      <li class="nav-item"><a href="//baidu.com">html5</a></li>
+      <li class="nav-item"><a href="//baidu.com">CSS3</a></li>
+      <li class="nav-item nav-item-hidden"><a href="//baidu.com">JavaScript</a></li>
+      <li class="nav-item nav-item-hidden"><a href="//baidu.com">Vue渐进式框架</a></li>
+      <li class="nav-item nav-item-hidden"><a href="//baidu.com">ES6从入门到精通</a></li>
+      <li class="nav-right"><a href="//baidu.com">关于</a></li>
+    </ul>
+  </nav>
+  <script>
+    var menu = document.getElementsByClassName("nav-bar")[0]
+    function showNavBar(ev) {
+      if (menu.style.opacity == 1) {
+        menu.style.opacity = 0
+      } else {
+        menu.style.opacity = 1
+      }
+    }
+  </script>
+</body>
+
+</html>

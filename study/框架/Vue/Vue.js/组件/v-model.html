@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="msg">{{msg}}
+    <com name='com' v-model="msg" @mouseover="fun" @change="fun"></com>
+  </div>
+
+  <script>
+    Vue.component('com', {
+      props: ['check'],
+      model: {
+        prop: 'check',
+        event: 'change'
+      },
+      template: `<input id="input" @mouseover="$emit('mouseover',$event.target.id)" @change="fun1" type="checkbox" />`,
+      methods: {
+        fun1($event) {
+          this.$emit('mouseover',$event)
+        }
+      }
+    })
+    new Vue({
+      el: "#app",
+      data: {
+        msg: 'massage'
+      },
+      methods: {
+        fun(value) {
+          console.log(value)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -30,11 +30,10 @@
         height: 500
       }
     };
-    // IE浏览器不支持mediaDevices
+    // !IE浏览器不支持mediaDevices
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function (stream) {
-        video.srcObject = stream;
-
+        video.srcObject = stream;// 设置视频媒体源
       })
       .catch(function (error) {
         console.log(error.name + ":" + error.message);

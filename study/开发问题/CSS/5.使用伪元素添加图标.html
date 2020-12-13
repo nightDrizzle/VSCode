@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    .content {
+    }
+    .content::before {
+      content: '';
+      background: url(../uploads/seckill-icon.png);
+      background-size: 20px 25px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 25px;
+    }
+    span {
+      /* display: inline-block; */
+      line-height: 25px;
+    }
+  </style>
+</head>
+
+<body>
+ <div class="content">
+  <span>文本</span>
+ </div>
+
+</body>
+
+</html>

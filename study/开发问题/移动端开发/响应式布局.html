@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,mimimum-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Document</title>
+  <style>
+    body {
+      margin-top: 35px;
+      text-align: center;
+    }
+
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    #header,
+    #navigation,
+    #mainbody,
+    #sidebar,
+    #footer {
+      height: 100px;
+      background-color: #aaa;
+      margin-bottom: 20px;
+      line-height: 25px;
+    }
+
+    #mainbody,
+    #sidebar {
+      float: left;
+      height: 300px;
+    }
+
+    #mainbody {
+      width: 700px;
+      margin-right: 40px;
+      background-color: yellow;
+    }
+
+    #sidebar {
+      width: 460px;
+      background-color: green;
+    }
+
+    #footer {
+      clear: both;
+    }
+
+    @media screen and (min-width:960px) and (max-width: 1200px) {
+      .container {
+        width: 760px;
+      }
+
+      #mainbody {
+        width: 430px;
+        margin-right: 20px;
+        background-color: orange;
+      }
+
+      #sidebar {
+        width: 310px;
+        background-color: cyan;
+      }
+    }
+    @media screen and (min-width:768px) and (max-width: 960px) {
+      .container {
+        width: 100%;
+      }
+
+      #mainbody {
+        width: 70%;
+        margin-right: 5%;
+        background-color: red;
+      }
+
+      #sidebar {
+        width: 25%;
+        background-color: blue;
+      }
+    }
+    /* 流式布局 */
+    @media screen and (max-width: 768px) {
+      .container {
+        width: 100%;
+      }
+      #mainbody,
+      #sidebar {
+        width: 100%;
+        float: none;
+        background-color: purple;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header id="header">
+      <h3>页头</h3>
+    </header>
+    <nav id="navigation">navigation</nav>
+    <section id="mainbody">
+      <p>
+        风急天高猿啸哀，渚清沙白鸟飞回。
+        无边落木萧萧下，不尽长江滚滚来。
+        万里悲秋常作客，百年多病独登台。
+        艰难苦恨繁霜鬓，潦倒新停浊酒杯。
+      </p>
+    </section>
+    <aside id="sidebar">
+      <p>
+        风急天高猿啸哀，渚清沙白鸟飞回。
+        无边落木萧萧下，不尽长江滚滚来。
+        万里悲秋常作客，百年多病独登台。
+        艰难苦恨繁霜鬓，潦倒新停浊酒杯。
+      </p>
+    </aside>
+    <footer id="footer">footer</footer>
+  </div>
+</body>
+
+</html>

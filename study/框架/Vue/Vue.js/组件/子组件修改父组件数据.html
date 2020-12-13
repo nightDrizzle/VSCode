@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <h3>{{text}}</h3>
+    <com :title="title" :text="text"></com>
+  </div>
+
+  <script>
+    Vue.component('com', {
+      props: ['title', 'text'],
+      template: '<div><h1>{{ myTitle }}</h1><h3>{{ myText }}</h3><button @click="changeText">改变子组件标题</button></div>',
+      data() {
+        return {
+          myTitle:this.title
+        }
+      },
+      computed:{
+        myText() {
+          return '子组件的'+this.text
+        }
+      },
+      methods:{
+        changeText() {
+          this.myTitle = "修改了子组件标题"
+        }
+      }
+    })
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        title:'标题',
+        text:'内容'
+        }
+    })
+  </script>
+</body>
+
+</html>

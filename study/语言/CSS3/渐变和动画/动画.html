@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+
+    div {
+      width: 10em;
+      height: 10em;
+      background-color: orangered;
+      display: inline-block;
+      animation-duration: 1.5s;
+      animation-timing-function: linear;
+      animation-delay: 1s;
+      animation-iteration-count: 3;
+      /*动画正反交替执行*/
+      animation-direction: alternate;
+    }
+
+    .box1 {
+      animation-name: anime1;
+      /*动画delay是应用初值,动画结束后应用第一个关键帧的样式*/
+      animation-fill-mode: backwards;
+    }
+
+    .box2 {
+      animation-name: anime1;
+      /*动画delay是应用初值,动画结束后应用最后一个关键帧的样式*/
+      animation-fill-mode: both;
+    }
+
+    .box3 {
+      animation-name: anime2;
+      /*动画结束后应用最后一个关键帧的样式（不会应用0%的样式）*/
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes anime1 {
+      from {
+        width: 5em;
+        height: 5em;
+      }
+
+      to {
+        height: 20em;
+        width: 20em;
+        background-color: orchid;
+      }
+    }
+
+    @keyframes anime2 {
+      from {
+        width: 5em;
+        height: 5em;
+      }
+
+      to {
+        height: 20em;
+        width: 20em;
+        background-color: orchid;
+      }
+    }
+
+    @keyframes anime3 {
+      0% {
+        width: 5em;
+        height: 5em;
+      }
+
+      50% {
+        width: 15em;
+        height: 15em;
+      }
+
+      100% {
+        width: 20em;
+        height: 20em;
+        background-color: orchid;
+      }
+    }
+
+    div:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="box1">backwords</div>
+    <div class="box2">both</div>
+    <div class="box3">forwards</div>
+  </section>
+
+</body>
+
+</html>
