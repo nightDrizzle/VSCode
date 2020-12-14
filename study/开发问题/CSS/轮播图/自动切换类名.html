@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 30px;
+      background-color: rgb(255, 0, 0);
+      float: left;
+    }
+
+    .active {
+      background-color: rgb(0, 0, 255);
+    }
+  </style>
+  <div class="box active"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <script>
+    let index = 0
+    setInterval(function () {
+      var divList = document.querySelectorAll('div')
+      divList[index % divList.length].classList.toggle('active')
+      divList[(index + 1) % divList.length].classList.toggle('active')
+      index++
+    }, 1000)
+  </script>
+</body>
+
+</html>
