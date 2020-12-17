@@ -38,18 +38,3 @@ ul {
 body {
   font-family: "微软雅黑",sans-serif;
 }
-.border {
-  border: 1px solid black;
-}
-.border_top {
-  border-border_top: 1px solid #666;
-}
-.border_bottom {
-  border-bottom: 1px solid #666;
-}
-.border_left {
-  border-left: 1px solid #666;
-}
-.border_right {
-  border-right: 1px solid #666;
-}
