@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../global.css">
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .wrapper {
+      position: absolute;
+      width: max-content;
+      height: max-content;
+      margin: auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .tab-item,
+    .box-item {
+      float: left;
+    }
+
+    .tab-item {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      border-right: 1px solid #777;
+      background-color: #ccc;
+    }
+
+    .tab-item:last-child {
+      border: none;
+    }
+    
+    .tab-item:hover {
+      color: #fff;
+      background-color: tomato;
+      cursor: pointer;
+    }
+
+    .box-item {
+      width: 500px;
+      height: 500px;
+      font-size: 50px;
+      line-height: 500px;
+      color: orange;
+      display: none;
+      background-color: cyan;
+    }
+
+    .tab-active {
+      background-color: red;
+    }
+    .box-active {
+      display: initial;
+    }
+  </style>
+  <div class="wrapper">
+    <ul class="tab clearfix">
+      <li class="tab-item tab-active">选项1</li>
+      <li class="tab-item">选项2</li>
+      <li class="tab-item">选项3</li>
+      <li class="tab-item">选项4</li>
+      <li class="tab-item">选项5</li>
+    </ul>
+    <div class="box clearfix">
+      <div class="box-item box-active">内容1</div>
+      <div class="box-item">内容2</div>
+      <div class="box-item">内容3</div>
+      <div class="box-item">内容4</div>
+      <div class="box-item">内容5</div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $(".tab-item").click(function () {
+        //方法1
+        // var index = $(this).index()
+        // $(".box-item").hide()
+        // $(".box-item").eq(index).show()
+        //方法2
+        var index = $(this).index()
+        $(this).addClass('tab-active').siblings().removeClass('tab-active')
+        $('.box-item').eq(index).addClass('box-active').siblings().removeClass('box-active')
+      })
+    })
+  </script>
+</body>
+
+</html>

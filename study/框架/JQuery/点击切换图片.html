@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../global.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .content {
+      width: 260px;
+      height: 200px;
+    }
+
+    .buttonBox,
+    .imgBox {
+      float: left;
+    }
+
+    .buttonBox>li {
+      color: #333;
+      border: 1px solid black;
+      width: 60px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    .imgBox>li {
+      display: none;
+    }
+
+    .imgBox>li:nth-child(1) {
+      display: initial;
+    }
+
+    .buttonBox>li:hover {
+      color: #fff;
+      background-color: purple;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content clearfix center">
+    <div class="buttonBox">
+      <li>图片1</li>
+      <li>图片2</li>
+      <li>图片3</li>
+      <li>图片4</li>
+      <li>图片5</li>
+    </div>
+    <div class="imgBox">
+      <li><a href="javascript:;"><img src="../images/nature-1.jpg" alt="图片1" width="200px" height="200px"></a></li>
+      <li><a href="javascript:;"><img src="../images/nature-2.jpg" alt="图片2" width="200px" height="200px"></a></li>
+      <li><a href="javascript:;"><img src="../images/nature-3.jpg" alt="图片3" width="200px" height="200px"></a></li>
+      <li><a href="javascript:;"><img src="../images/nature-4.jpg" alt="图片4" width="200px" height="200px"></a></li>
+      <li><a href="javascript:;"><img src="../images/nature-5.jpg" alt="图片5" width="200px" height="200px"></a></li>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $('.buttonBox').children().click(function () {
+        var index = $(this).index
+        $('.imgBox').children().hide()
+        $('.imgBox').children().eq(index).show()
+      })
+    })
+  </script>
+</body>
+
+</html>

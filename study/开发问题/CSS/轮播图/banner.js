@@ -41,7 +41,7 @@ function autoSlide() {
   function setIndicator(imgIndex) {
     dotIndex = imgIndex - 1
     //索引为 0-(length-1) 和索引为length时做不同的处理
-    for(let i = 0;i<dotLiList.length;i++) {
+    for (let i = 0; i < dotLiList.length; i++) {
       dotLiList[i].classList.remove('active')
     }
     dotLiList[dotIndex].classList.add('active')
@@ -50,7 +50,6 @@ function autoSlide() {
   let timerId
   let startTimer = function () {
     timerId = setInterval(function () {
-
       // 添加过渡效果
       imgBox.style.transition = "left 0.3s"
       if (imgIndex === imgNum - 2) {// 处理imgNum-2到imgNum-1图片的切换
@@ -128,7 +127,6 @@ function autoSlide() {
       // 重新添加计时器
       startTimer()
     }, 300)
-
   })
 }
 

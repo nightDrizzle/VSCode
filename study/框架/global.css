@@ -1,0 +1,49 @@
+/*
+ * 清除样式
+ */
+html,body,ul,li,img,a,p,div,form,input {
+  margin: 0;
+  padding: 0;
+  /* 去除移动端特有的点击高亮效果 */
+  -webkit-tap-highlight-color:transparent;
+}
+
+li {
+  list-style:none;
+}
+/* input { */
+  /* 清除文本框获取焦点时默认的轮廓 */
+  /* outline: none; */
+  /* 清除边框 */
+  /* border:none; */
+  /* border:1px solid #ccc; */
+/* } */
+
+/* 清除浮动 */
+.clearfix::after{
+  content: "";
+  display:block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix {
+  /* 触发 hasLayout */ 
+  zoom: 1; 
+}
+
+/*
+ * 添加样式
+ */
+body {
+  font-family: "微软雅黑",sans-serif;
+}
+/*垂直水平居中*/
+.center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
