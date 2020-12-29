@@ -67,7 +67,7 @@
   <script>
     $(function () {
       $('.buttonBox').children().click(function () {
-        var index = $(this).index
+        var index = $(this).index()
         $('.imgBox').children().hide()
         $('.imgBox').children().eq(index).show()
       })

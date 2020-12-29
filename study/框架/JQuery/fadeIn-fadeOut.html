@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../global.css">
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+  <style>
+    .container {
+      display: none;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+  <button>fadeIn</button>
+  <button>fadeOut</button>
+  <button>fadeToggle</button>
+  <button>fadeTo</button>
+  <div class="container"></div>
+  <script>
+    $(document).ready(function() {
+      $("button").eq(0).click(function() {
+        $('.container').fadeIn()
+      })
+      $("button").eq(1).click(function() {
+        $('.container').fadeOut()
+      })
+      $("button").eq(2).click(function() {
+        $('.container').fadeToggle()
+      })
+      $("button").eq(3).click(function() {
+        $('.container').fadeTo(1000,0.5)
+      })
+    })
+  </script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "vue-router": "^3.4.9"
   }
 }

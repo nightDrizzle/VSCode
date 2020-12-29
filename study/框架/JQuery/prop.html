@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../global.css">
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+  <style>
+    .big {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+  <div class="container">
+    <input type="checkbox">
+    <input>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button class="big" myprop="333">按钮3</button>
+  </div>
+  <script>
+    $(document).ready(function() {
+      var checked = $("input").eq(0).prop('checked')
+      console.log(checked)
+      $("input").eq(1).prop({type:"number",placeholder:'请输入'})
+      $("button").eq(0).prop("class","big")
+      $("button").eq(1).prop("class", function() {
+        return "big"
+      })
+      $("button").eq(2).removeProp("class")
+    })
+  </script>
+</body>
+</html>

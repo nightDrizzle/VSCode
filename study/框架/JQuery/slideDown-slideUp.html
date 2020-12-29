@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+  <style>
+    .container {
+      display: none;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+  <button>slideDown</button>
+  <button>slideUp</button>
+  <button>slideToggle</button>
+  <div class="container"></div>
+  <script>
+    $(document).ready(function() {
+      $('button').eq(0).click(function() {
+        $(".container").slideDown()
+      })
+      $('button').eq(1).click(function() {
+        $(".container").slideUp()
+      })
+      $('button').eq(2).click(function() {
+        $(".container").slideToggle()
+      })
+    })
+  </script>
+</body>
+</html>
