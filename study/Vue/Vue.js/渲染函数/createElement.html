@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <anchored-heading :level="6">Hello world!</anchored-heading>
+    </div>
+    <script>
+      const MyComponent = { template: `<div>MyComponent</div>` }
+      Vue.component('anchored-heading', {
+        render: function (createElement) {
+          return createElement('div', {
+            class: {
+              foo: true,
+              bar: false,
+            },
+            style: {
+              color: 'red',
+              fontSize: '14px',
+            },
+            attrs: {
+              id: 'foo',
+            },
+            props: {
+              myProp: 'bar',
+            },
+            // DOM property是dir(element)中的属性，HTML attribute是dir(element)中attributes内的属性
+            domProps: {
+              innerHTML: 'baz',
+            },
+            on: {
+              click: this.clickHandler,
+            },
+            // 作用域插槽的格式为
+            // { name: props => VNode | Array<VNode> }
+            scopedSlots: {
+              default: (props) => createElement('span', props.text),
+            },
+            // 如果组件是其它组件的子组件，需为插槽指定名称
+            slot: 'name-of-slot',
+            // 其它特殊顶层 property
+            key: 'myKey',
+            ref: 'myRef',
+            // 如果你在渲染函数中给多个元素都应用了相同的 ref 名，
+            // 那么 `$refs.myRef` 会变成一个数组。
+            refInFor: true,
+          })
+        },
+        methods: {
+          clickHandler() {
+            console.log('click')
+          },
+          nativeClickHandler() {
+            console.log('nativeClick')
+          },
+        },
+      })
+      new Vue({}).$mount('#app')
+    </script>
+  </body>
+</html>

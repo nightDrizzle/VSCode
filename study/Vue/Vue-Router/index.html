@@ -1,78 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    #app {
-      background-color: #fff;
-    }
-  </style>
-</head>
-
-<body>
-  <script src="js/vue.js"></script>
-  <script src="js/vue-router.js"></script>
-
-  <div id="app">
-    <p>
-      <router-link to="home">Home</router-link>
-      <router-link to="/home/foo">home/foo</router-link>
-      <router-link to="/home/bar">home/bar</router-link>
-    </p>
-    <a href="#/home/foo" target="_self">home/foo</a>
-    <a href="#/home/bar" target="_self">home/bar</a>
-    <button @click="function">点击Push路由</button>
-    <router-view></router-view>
-  </div>
-  <script>
-    const Home = {
-      template: `<div>Home<router-view></router-view></div>`
-    }
-    const User = {
-      template: `<div>User {{ $route.params.id }}</div>`
-    }
-    const Foo = {
-      template: `<div>foo</div>`
-    }
-    const Bar = {
-      template: `<div>bar</div>`
-    }
-    const Com404 = {
-      template: `<div>404 not found </div>`
-    }
-    const router = new VueRouter({
-      routes: [
-        // { path: '/', redirect: 'home' },
-        {
-          path: '/home',
-          component: Home,
-          children: [
-            { name: 'foo', path: 'foo', component: Foo },
-            { name: 'bar', path: 'bar', component: Bar }
-          ]
-        },
-        { path: '*', component: Com404 }
-      ]
-    })
-
-    const app = new Vue({
-      router,
-      created() {
-        
-      },
-      watch: {
-        $route(to, from) {
-          console.log(object);
-          // console.log(from.path);
-          console.log(to.path);
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        background-color: #fff;
       }
-    }).$mount('#app')
+    </style>
+  </head>
 
-  </script>
-</body>
+  <body>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+      #home {
+        color: red;
+      }
 
+      #foo,
+      #bar {
+        color: blue;
+      }
+    </style>
+    <div id="app">
+      <p>
+        <router-link to="/home">Home</router-link>
+        <router-link to="/home/foo">home/foo</router-link>
+        <router-link to="/home/bar">home/bar</router-link>
+      </p>
+      <p>
+        <router-link to="/other">Other</router-link>
+      </p>
+      <button @click="pushRoute">点击Push路由</button>
+      <button @click="popRoute">点击Pop路由</button>
+      <router-view></router-view>
+    </div>
+    <script>
+      const Home = {
+        template: `<div id="home">Home<router-view></router-view></div>`,
+        beforeRouteEnter(to, from, next) {
+          next((vm) => {
+            console.log('组件-beforeRouteEnter')
+          })
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log('组件-beforeRouteUpdate')
+          next()
+        },
+        beforeRouteLeave(to, from, next) {
+          console.log('组件-beforeRouteLeave')
+          const answer = window.confirm(
+            'Do you really want to leave? you have unsaved changes!'
+          )
+          if (answer) {
+            next()
+          } else {
+            next(false)
+          }
+        },
+      }
+      const Other = { template: `<div id="other">other</div>` }
+      const Foo = {
+        template: `<div id="foo">foo</div>`,
+      }
+      const Bar = {
+        template: `<div id="bar">bar</div>`,
+      }
+      const router = new VueRouter({
+        routes: [
+          // { path: '/', redirect: 'home' },
+          {
+            path: '/home',
+            component: Home,
+            children: [
+              {
+                name: 'foo',
+                path: 'foo',
+                component: Foo,
+                meta: { requiresAuth: true },
+              },
+              {
+                name: 'bar',
+                path: 'bar',
+                component: Bar,
+                meta: { requiresAuth: true },
+              },
+            ],
+            meta: { requiresAuth: true },
+            beforeEnter(to, from, next) {
+              console.log('路由-beforeEnter')
+              next()
+            },
+          },
+          { path: '/other', component: Other },
+        ],
+      })
+      router.beforeEach((to, from, next) => {
+        next()
+      })
+      const app = new Vue({
+        router,
+        created() {
+          this.$router.push({ name: 'bar', query: { value: 3 } })
+        },
+        watch: {
+          $route(to, from) {
+            // console.log(to);
+          },
+        },
+        methods: {
+          pushRoute() {
+            this.$router.push('/home')
+          },
+          popRoute() {
+            this.$router.go(-1)
+          },
+        },
+      }).$mount('#app')
+    </script>
+  </body>
 </html>

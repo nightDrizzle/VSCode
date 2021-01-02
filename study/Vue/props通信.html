@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="Vue-Router/js/vue.js"></script>
+    <script src="Vue-Router/js/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <home :message="msg"></home>
+    </div>
+    <script>
+      const Home = {
+        props: ['message'],
+        template: `<div>{{message}}</div>`,
+        created() {},
+      }
+      new Vue({
+        data: {
+          msg: 'test',
+        },
+        components: {
+          home: Home,
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

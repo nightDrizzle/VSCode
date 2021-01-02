@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+  </head>
+  <body>
+    <style>
+      .home-item {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .home-enter-active,
+      .home-leave-active {
+        transition: all 0.5s;
+      }
+      .home-enter,
+      .home-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .view-item {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .view-enter-active,
+      .view-leave-active {
+        transition: all 0.5s;
+      }
+      .view-enter,
+      .view-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    </style>
+    <div id="app">
+      <router-link to="/">Welcome</router-link>
+      <router-link to="/home">Home</router-link>
+      <router-link to="/home/foo">Foo</router-link>
+      <router-link to="/home/bar">Bar</router-link>
+      <router-link to="/other">other</router-link>
+      <transition-group name="view">
+        <router-view :key="1"></router-view>
+        <router-view :key="2" name="a"></router-view>
+        <router-view :key="3" name="b"></router-view>
+      </transition-group>
+    </div>
+    <script>
+      const Home = {
+        template: `<div>Home<transition name="home"><router-view></router-view></transition></div>`,
+        beforeRouteEnter(to, from, next) {
+          console.log('home')
+          next()
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log('复用home')
+          next()
+        },
+        beforeRouteLeave(to, from, next) {
+          console.log('离开home')
+          next()
+        },
+      }
+      const Foo = {
+        template: `<div>Foo</div>`,
+        beforeRouteEnter(to, from, next) {
+          console.log('foo')
+          next()
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log('复用foo')
+          next()
+        },
+        beforeRouteLeave(to, from, next) {
+          console.log('离开foo')
+          next()
+        },
+      }
+      const Bar = {
+        template: `<div>Bar</div>`,
+        beforeRouteEnter(to, from, next) {
+          console.log('bar')
+          next()
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log('复用bar')
+          next()
+        },
+        beforeRouteLeave(to, from, next) {
+          console.log('离开bar')
+          next()
+        },
+      }
+      const Other = {
+        template: `<div>Other</div>`,
+        beforeRouteEnter(to, from, next) {
+          console.log('other')
+          next()
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log('复用other')
+          next()
+        },
+        beforeRouteLeave(to, from, next) {
+          console.log('离开other')
+          next()
+        },
+      }
+      const Welcome = {
+        template: `<div>Welcome</div>`,
+        beforeRouteEnter(to, from, next) {
+          next((vm) => {
+            this.isLogin = true
+          })
+        },
+      }
+    </script>
+    <script>
+      const router = new VueRouter({
+        routes: [
+          {
+            path: '/',
+            component: Welcome,
+          },
+          {
+            path: '/home',
+            component: Home,
+            children: [
+              { name: 'foo', path: 'foo', component: Foo },
+              { name: 'bar', path: 'bar', component: Bar },
+            ],
+            beforeEnter: (to, from, next) => {
+              console.log('进入路由home')
+              next()
+            },
+          },
+          {
+            path: '/other',
+            components: {
+              default: Other,
+              a: Bar,
+              b: Foo,
+            },
+          },
+        ],
+      })
+      // 全局导航守卫
+      router.beforeEach((to, from, next) => {
+        console.log('执行全局导航守卫')
+        if (this.isLogin && to.path === '/') {
+          next(false)
+        } else {
+          next()
+        }
+      })
+      router.beforeResolve((to, from, next) => {
+        console.log('执行全局解析守卫')
+        next()
+      })
+      router.afterEach((to, from) => {
+        // console.log('执行全局后置钩子')
+      })
+    </script>
+    <script>
+      new Vue({
+        created() {},
+        data: {
+          isLogin: false,
+        },
+        router,
+        watch: {
+          $route(to, from) {
+            // console.log(from)
+            // console.log(to)
+          },
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

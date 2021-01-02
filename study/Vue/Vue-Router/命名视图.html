@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>命名视图</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+  </head>
+
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body,
+      html,
+      #app {
+        height: 100%;
+      }
+      ul li {
+        list-style: none;
+      }
+      ul {
+        display: flex;
+        background-color: #333;
+      }
+      ul a {
+        color: #fff;
+        display: flex;
+        padding: 20px;
+      }
+      ul a:hover {
+        color: #fff;
+        background-color: #200;
+      }
+
+      .container {
+        height: 100%;
+        display: flex;
+      }
+      .leftView {
+        background-color: #999;
+        width: 200px;
+        height: 100%;
+      }
+      .rightView {
+        background-color: blue;
+        width: 200px;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+    <div id="app">
+      <ul>
+        <li>
+          <router-link to="/">/</router-link>
+        </li>
+        <li>
+          <router-link to="/item/1">选项1</router-link>
+        </li>
+        <li>
+          <router-link to="/item/2">选项2</router-link>
+        </li>
+        <li>
+          <router-link to="/item/3">选项3</router-link>
+        </li>
+        <li>
+          <router-link to="/item/4">选项4</router-link>
+        </li>
+      </ul>
+
+      <div class="container">
+        <!--默认视图-->
+        <router-view></router-view>
+        <!--命名视图-left-->
+        <router-view class="leftView" name="left"></router-view>
+        <!--命名视图-right-->
+        <router-view class="rightView" name="right"></router-view>
+      </div>
+    </div>
+
+    <script>
+      const Nav = { template: `<div id="nav">Nav</div>` }
+      const Main = { template: `<div id="main">Main</div>` }
+      const Other = { template: `<div id="other">选项{{$route.params.id}}</div>` }
+      new Vue({
+        router: new VueRouter({
+          routes: [
+            {
+              path: '/',
+              // 命名视图使用的组件
+              components: {
+                left: Nav,
+                right: Main,
+              },
+            },
+            {
+              path: '/item/:id',
+              component: Other,
+            },
+          ],
+        }),
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

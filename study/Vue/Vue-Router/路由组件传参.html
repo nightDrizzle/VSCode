@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>路由组件传参</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <router-link to="/user/admin?value=3">admin</router-link>
+      <router-link to="/user/username1">username1</router-link>
+      <router-view></router-view>
+    </div>
+    <script>
+      const User = {
+        props: ['query'],
+        template: '<div>User {{ query }}</div>',
+      }
+      const router = new VueRouter({
+        // mode: 'history',
+        routes: [
+          {
+            path: '/user/:id',
+            component: User,
+            props: (route) => ({ query: route.query.value + 'ssss' }),
+          },
+        ],
+      })
+      new Vue({
+        router,
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

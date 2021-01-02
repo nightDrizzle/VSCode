@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <style>
-    *{
-      margin: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app">
-    <p :style="style">
-      {{msg}}
-    </p>
-    
-  </div>
-  <script>
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        msg: 'this is a massage',
-        color: 'blue',
-        style: {
-          backgroundColor:"blue",
-          fontSize:"30px"
-        }
-      },
-      watch: {
-        msg(val) {
-          this.style.backgroundColor = "red"
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>watch监听值的变换</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      * {
+        margin: 0;
       }
-    })
-  </script>
-</body>
+      html,
+      body,
+      #app {
+        height: 100%;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app" :style="style">
+      <p>
+        <select v-model="style.backgroundColor">
+          <option disable value="">请选择颜色</option>
+          <option value="red">red</option>
+          <option value="orange">orange</option>
+          <option value="yellow">yellow</option>
+          <option value="green">green</option>
+          <option value="cyan">cyan</option>
+          <option value="blue">blue</option>
+          <option value="purple">purple</option>
+        </select>
+      </p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          count: 0,
+          style: {
+            backgroundColor: '',
+          },
+        },
+        created() {
+          setInterval(() => {
+            this.count++
+          }, 1000)
+        },
+        watch: {
+          style(newVal, oldVal) {
+            console.log(newVal, oldVal)
+            this.style.backgroundColor = this.selected
+          },
+          count: {
+            handler: function (newVal, oldVal) {
+              console.log(newVal)
+            },
+            immediate: true,
+          },
+        },
+      })
+    </script>
+  </body>
 </html>

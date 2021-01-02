@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>数据获取</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <router-link to="/post">post</router-link>
+      <router-view :parent-post="post"></router-view>
+    </div>
+    <script>
+      const Post = {
+        props: ['parentPost'],
+        template: `<div>
+          <div v-if="loading">
+            Loading...
+          </div>
+          <div v-if="post">
+            <h2>{{post.title }}</h2>
+            <p>{{ post.body }}</p>
+          </div>
+        </div>`,
+        data() {
+          return {
+            loading: false,
+            post: null,
+          }
+        },
+        created() {
+          console.log(this)
+          this.fetchData()
+        },
+        watch: {
+          $route: 'fetchData',
+        },
+        methods: {
+          fetchData() {
+            this.loading = true
+            setTimeout(() => {
+              this.loading = false
+              this.post = this.parentPost
+            }, 800)
+          },
+        },
+      }
+    </script>
+    <script>
+      const router = new VueRouter({
+        routes: [{ path: '/post', component: Post }],
+      })
+    </script>
+    <script>
+      new Vue({
+        router,
+        data: {
+          post: {
+            title: 'title',
+            body: 'this is a post',
+          },
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

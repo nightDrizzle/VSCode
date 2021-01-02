@@ -1,53 +1,40 @@
+### VSCode-settings.json 中的配置
+
 ```json
 {
-  "tabnine.experimentalAutoImports": true,
-  "workbench.iconTheme": "vscode-icons",
-  "vetur.grammar.customBlocks": {
-    "docs": "md",
-    "i18n": "json"
-  },
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true, // 粘贴时格式化
+  "editor.formatOnSave": true, // 保存时格式化
+
+  /*prettier-start*/
+  "vetur.format.defaultFormatter.html": "prettier",
+  "vetur.format.defaultFormatter.pug": "prettier",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.postcss": "prettier",
+  "vetur.format.defaultFormatter.scss": "prettier",
+  "vetur.format.defaultFormatter.less": "prettier",
+  "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+  "vetur.format.defaultFormatter.js": "prettier",
+  "vetur.format.defaultFormatter.ts": "prettier",
+  "vetur.format.defaultFormatter.sass": "sass-formatter",
   "vetur.format.defaultFormatterOptions": {
     "prettier": {
-      "printWidth": 300,
+      "printWidth": 200,
       "singleQuote": true,
-      "wrapAttributes": false,
-      "sortAttributes": false,
-      "semi": false,
-      "tabWidth": 2,
-    },
-    "js-beautify-html": {
-      "wrap_attributes": "force-expand-multiline",
-      "wrap_line_length": 300,
-      "end_with_newline": false //
-    },
-    "prettyhtml": {
-        "printWidth": 300,
-        "singleQuote": true,
-        "wrapAttributes": false,
-        "sortAttributes": false,
-        "semi": false,
-        "tabWidth": 2,
+      "semi": false
     }
   },
-  "vetur.format.defaultFormatter.html": "prettyhtml",
-  "[vue]": {
-    "editor.defaultFormatter": "octref.vetur"
-  },
-  "[jsonc]": {
+  "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.codeAction.showDocumentation": {
-    "enable": true
-  },
-  "explorer.confirmDelete": false,
-  "editor.tabSize": 2, // vscode制表符的空格数
-  "javascript.format.semicolons": "remove", // 删除js代码结尾分号
-  "javascript.preferences.quoteStyle": "single",
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "liveServer.settings.donotShowInfoMsg": true,
+  "prettier.semi": false, // 清除js语句结尾的分号
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 200,
   "explorer.confirmDragAndDrop": false,
-  "git.enableSmartCommit": true
+  "workbench.colorTheme": "Visual Studio Light",
+  "files.autoSave": "off",
+  "explorer.confirmDelete": false,
+  "tabnine.experimentalAutoImports": true // 使用单引号
+  /*prettier-end*/
 }
 ```

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>渲染函数</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <anchored-heading :level="1">Hello world!</anchored-heading>
+      <!-- <anchored-heading :level="2">Hello world!</anchored-heading>
+      <anchored-heading :level="3">Hello world!</anchored-heading>
+      <anchored-heading :level="4">Hello world!</anchored-heading>
+      <anchored-heading :level="5">Hello world!</anchored-heading>
+      <anchored-heading :level="6">Hello world!</anchored-heading> -->
+    </div>
+    <script>
+      Vue.component('anchored-heading', {
+        render(h) {
+          return h(
+            'h' + this.level,
+            // this.$slots.default是一个VNodes数组
+            this.$slots.default
+          )
+        },
+        props: {
+          level: {
+            type: Number,
+            required: true,
+          },
+        },
+        created() {
+          console.log(this.$slots.default)
+        },
+      })
+      new Vue({}).$mount('#app')
+    </script>
+  </body>
+</html>

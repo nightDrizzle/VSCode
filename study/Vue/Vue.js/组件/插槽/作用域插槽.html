@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作用域插槽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <!--父级作用域（app）-->
+      <my-component>
+        <template v-slot:content="props">
+          <!--msg来自于子作用域，而这里是父作用域-->
+          <!--通过v-bind将同为子作用域的msg绑定到slot上作为它的props，然后再将props通过v-slot指令传递给父级作用域-->
+          {{props.msg}}
+        </template>
+      </my-component>
+    </div>
+    <template id="com">
+      <!--子级作用域(my-component)-->
+      <div>
+        <h1>my-com</h1>
+        <slot name="content" :msg="msg"></slot>
+      </div>
+    </template>
+    <script>
+      Vue.component('myComponent', {
+        template: '#com',
+        data() {
+          return {
+            msg: '插槽内容',
+          }
+        },
+        created() {
+          console.log(this)
+          console.log(this.$scopedSlots)
+        },
+      })
+      var app = new Vue({
+        data: {
+          msg: 'sss',
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

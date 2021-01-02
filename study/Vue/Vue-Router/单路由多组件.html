@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <router-link to="/home">Home</router-link>
+      <router-link to="/home/foo">Foo</router-link>
+      <router-link to="/home/bar">Bar</router-link>
+      <router-view></router-view>
+    </div>
+    <script>
+      const Home = { template: `<div>Home<router-view></router-view></div>` }
+      const Foo = { template: `<div>Foo</div>` }
+      const Bar = { template: `<div>Bar</div>` }
+      const router = new VueRouter({
+        routes: [
+          {
+            path: '/home',
+            component: Home,
+            children: [
+              { name: 'foo', path: 'foo', component: Foo },
+              { name: 'bar', path: 'bar', component: Bar },
+            ],
+          },
+        ],
+      })
+      new Vue({
+        router,
+      }).$mount('#app')
+    </script>
+  </body>
+</html>
