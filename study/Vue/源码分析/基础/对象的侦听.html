@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 将data变为可侦测数据，并保存为自己的数据
+      class Observer {
+        constructor(data) {
+          this.data = data
+          if (Array.isArray(data)) {
+            //data是数组
+          } else {
+            //data是对象
+            this.walk(data)
+          }
+        }
+        //循环将obj变为可侦测对象
+        walk(obj) {
+          const keys = Object.keys(obj)
+          for (let i = 0; i < keys.length; i++) {
+            defineReactive(obj, keys[i])
+          }
+        }
+      }
+      /*
+       * 将对象的某个属性变为可侦测属性
+       * @params obj：要修改的obj
+       * @params key：要修改的key
+       * @params value：要修改的值
+       */
+      function defineReactive(obj, key, value) {
+        // 没有传入value
+        if (arguments.length === 2) {
+          value = obj[key]
+        }
+        // value是一个对象
+        if (typeof value === 'object') {
+          // 把value作为data传入Observer的constructor，从而将其变为可侦测对象
+          new Observer(value)
+        }
+        Object.defineProperty(obj, key, {
+          enumerable: true,
+          configurable: true,
+          get() {
+            console.log(`获取了${key}的值`)
+            return value
+          },
+          set(newValue) {
+            if (newValue === value) {
+              return
+            }
+            console.log(`设置了${key}的值`)
+            console.log(`${key}的新值为:`)
+            console.log(newValue)
+            value = newValue
+          },
+        })
+      }
+      let user = {
+        username: 'myname',
+        type: 'admin',
+        person: {
+          username: 'myfriend',
+        },
+      }
+      let user1 = new Observer(user)
+    </script>
+  </body>
+</html>

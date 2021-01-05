@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 函数对象的prototype和__proto__指向相同
+      function a() {}
+      console.log(a.prototype.__proto__ === Object.prototype) // true
+      Object.prototype.obj = 'obj'
+      a.prototype.foo = 'a'
+      var b = new a()
+      b.bar = 'b'
+      console.dir(a)
+      console.dir(b)
+      console.log(b.__proto__)
+      console.log(b.__proto__.__proto__)
+      console.log(b.__proto__.__proto__.__proto__)
+      console.log('----------------------分割线--------------------------')
+      console.log(a.prototype)
+      console.log(a.prototype.__proto__)
+      console.log(a.prototype.__proto__.__proto__)
+      console.log('----------------------分割线--------------------------')
+      console.log(b.__proto__ === a.prototype)
+      // b.__proto__.__proto__ === a.prototype.__proto__ === Object.prototype
+      // 而Object.prototype的__proto__为null
+      console.log(b.__proto__.__proto__ === a.prototype.__proto__)
+      console.log(b.__proto__.__proto__.__proto__ === a.prototype.__proto__.__proto__)
+      console.log(Object.prototype.__proto__) // null
+      console.log(Object.__proto__.__proto__.__proto__) // null
+      /*
+       * 总结：
+       * 1)b.__proto__是a的原型对象a.prototype
+       * 2)a的原型对象的__proto__是Object的原型对象Object.prototype
+       * 3)Object的原型对象的__proto__是原型的根对象null
+       */
+    </script>
+  </body>
+</html>

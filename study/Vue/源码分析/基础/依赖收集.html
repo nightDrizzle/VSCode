@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 依赖管理 Dep => [依赖的数组]
+      class Dep {
+        constructor() {
+          this.subs = []
+        }
+        // 添加依赖的方法
+        addSub(sub) {
+          this.subs.push(sub)
+        }
+        removeSub(sub) {
+          remove(this.subs, sub)
+        }
+        // 添加依赖,定义全局属性target，通过target将依赖放置进来
+        depend() {
+          if (window.target) {
+            this.addSub()
+          }
+        }
+        // 通知所有依赖更新的方法
+        notify() {
+          const subs = this.subs.slice()
+          for (let i = 0, l = subs.length; i < l; i++) {
+            subs[i].update()
+          }
+        }
+      }
+      function remove(arr, item) {
+        if (arr.length) {
+          const index = arr.indexOf(item)
+          if (index != -1) {
+            return arr.splice(idnex, 1)
+          }
+        }
+      }
+
+      function defineReactive(obj, key, value) {
+        // 没有传入value
+        if (arguments.length === 2) {
+          value = obj[key]
+        }
+        // value是一个对象
+        if (typeof value === 'object') {
+          // 把value作为data传入Observer的constructor，从而将其变为可侦测对象
+          new Observer(value)
+        }
+        const dep = new Dep() //实例化一个依赖管理器
+
+        Object.defineProperty(obj, key, {
+          enumerable: true,
+          configurable: true,
+          get() {
+            dep.depend()
+            console.log(`获取了${key}的值`)
+            return value
+          },
+          set(newValue) {
+            if (newValue === value) {
+              return
+            }
+            console.log(`设置了${key}的值`)
+            console.log(`${key}的新值为:`)
+            console.log(newValue)
+            value = newValue
+            //当修改内容时通知依赖更新
+            dep.notify()
+          },
+        })
+      }
+    </script>
+  </body>
+</html>

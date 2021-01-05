@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log('[Object Array Function的类型]')
+      console.log(typeof Object) // function
+      console.log(typeof Array) // function
+      console.log(typeof Function) // function
+      console.log('-------------------------')
+      console.log('[Object Array Function的prototype]')
+      console.log(Object.prototype)
+      console.log(Array.prototype)
+      console.log(Function.prototype)
+      console.log('-------------------------')
+      console.log('[Object Array Function的prototype的类型]')
+      console.log(typeof Object.prototype) // object
+      console.log(typeof Array.prototype) // object
+      console.log(typeof Function.prototype) // function
+      console.log('-------------------------')
+      console.log(Object.__proto__) //ƒ () { [native code] }
+      console.log(Array.__proto__) //ƒ () { [native code] }
+      console.log(Function.__proto__) //ƒ () { [native code] }
+      console.log('-------------------------')
+      console.log(typeof Object.__proto__) // function
+      console.log(typeof Array.__proto__) // function
+      console.log(typeof Function.__proto__) // function
+      console.log('-------------------------')
+      console.log(Object.__proto__ === Function.prototype) //true
+      console.log(Array.__proto__ === Function.prototype) //true
+      console.log(Function.__proto__ === Function.prototype) //true
+      console.log('-------------------------')
+      console.log(Function.prototype.__proto__ === Object.prototype) // true
+      console.log(Object.prototype)
+      console.log(Object.__proto__ === Function.prototype) // true
+      console.dir(Function)
+      console.dir(Object)
+      console.log('——————————————————————— ——————————————————————— ——————————————————————— ——————————————————————— ———————————————————————')
+    </script>
+    <script>
+      var o = {
+        name: 'object',
+        id: 1,
+      }
+      console.log(o.prototype) // undefined
+      console.log(o.__proto__) // {...}
+      console.log(o.__proto__ === Object.prototype) // true
+      console.log(Object.prototype.constructor === Object) // true
+      console.log(Object.constructor == Function) // true
+      console.log(Object.prototype.__proto__) // null
+      console.log(o.__proto__.__proto__ === Object.prototype.__proto__)
+    </script>
+    <script>
+      o.__proto__.name = 'myobj'
+      o.__proto__.color = 'blue'
+      var a = new Object()
+      a.name
+    </script>
+  </body>
+</html>

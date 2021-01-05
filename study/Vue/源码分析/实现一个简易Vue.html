@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="msg" value="sss" />
+      <h1>{{msg}}</h1>
+      <h2 v-html="msg"></h2>
+      <button @click="changeEvent">修改msg</button>
+    </div>
+    <script>
+      class Vue {
+        constructor(options) {
+          this.$el = document.querySelector(options.el)
+          // 数据创造之前
+          if (typeof options.beforeCreate === 'function') {
+            options.beforeCreate.bind(this)()
+          }
+
+          this.$options = options
+          /*
+           * @params dataKey: this.$options.data.dataKey或this.dataKey
+           * @params watcher: 在当前Vue实例中，某个DOM节点的property（方法中的prop参数）和vm上代理的某条数据相互关联的对象
+           * 设置专门保存修改更新的事件对象，将data（已委托，data.msg等同于vm.msg）中的数据和用于更新的对象连接起来
+           * {
+           *   数据:[watcher,...]
+           *   dataKey1: [watcher1,watcher2...],
+           *   dataKey2: [watcher1,watcher2...],
+           *   ...
+           *   msg:[
+           *     {
+           *        vm:vm,
+           *        dataKey:'msg',
+           *        node:<input type="text" v-model="msg" value="sss" />,
+           *        prop:'value'
+           *     },
+           *     {
+           *        vm:vm,
+           *        dataKey:'msg',
+           *        node:<h2 v-html="msg"></h2>,
+           *        prop:'innerHTML'
+           *     },
+           *   ]
+           * }
+           *
+           */
+          this.$watchEvent = {}
+          // 代理options的data数据
+          this.proxyData(options, options.data)
+          this.observe()
+          // 数据创造之后
+          if (typeof options.created === 'function') {
+            options.created.bind(this)()
+          }
+
+          // 挂载前
+          if (typeof options.beforeMount === 'function') {
+            options.beforeMount.bind(this)()
+          }
+          this.compile(this.$el)
+          // 挂载后
+          if (typeof options.mounted === 'function') {
+            options.mounted.bind(this)()
+          }
+        }
+        // 数据代理
+        proxyData(options, data) {
+          //（把data中的所有属性代理到options中，options可以直接调用data所有的属性）
+          for (let dataKey in data) {
+            Object.defineProperty(this, dataKey, {
+              configurable: false,
+              enumerable: true,
+              get() {
+                return data[dataKey] // forin语句中使用object.[dataKey]获取属性的值
+              },
+              set(value) {
+                options.data[dataKey] = value
+              },
+            })
+          }
+        }
+        // 劫持事件
+        observe() {
+          for (let dataKey in this.$options.data) {
+            let value = this.$options.data[dataKey]
+            let that = this
+            Object.defineProperty(this.$options.data, dataKey, {
+              configurable: false,
+              enumerable: true,
+              get() {
+                // console.log('触发获取内容事件')
+                return value
+              },
+              set(newValue) {
+                value = newValue
+                console.log(`vm.${dataKey}的set方法执行，更新了data.${dataKey}，完成了视图更新数据`)
+                // 修改了数据（data.dataKey），则通知所有与dataKey关联的watcher修改prop更新视图
+                if (that.$watchEvent[dataKey]) {
+                  // 对所有的dataKey的watcher
+                  that.$watchEvent[dataKey].forEach((item) => {
+                    item.update()
+                  })
+                }
+              },
+            })
+          }
+        }
+        //编译（把view的数据和事件进行绑定）
+        compile(cNode) {
+          //@params node：根元素的直接子元素（input,h1,h2,button）对应的DOM节点
+          cNode.childNodes.forEach((node, index) => {
+            // 当前节点是元素
+            if (node.nodeType === 1) {
+              // 对指令v-html的操作
+              if (node.hasAttribute('v-html')) {
+                let dataKey = node.getAttribute('v-html').trim() // 获取到v-html的值(msg)
+                node.innerHTML = this[dataKey] // 实现v-html指令的功能
+                this.addWatcher(dataKey, node, 'innerHTML') // 添加watcher
+                node.removeAttribute('v-html') // 移除v-html指令
+              }
+              // 对指令v-model的操作
+              if (node.hasAttribute('v-model')) {
+                let dataKey = node.getAttribute('v-model').trim() // 获取v-model绑定的值(msg)
+                // 在存在数据dataKey时修改视图并添加watcher
+                if (this.hasOwnProperty(dataKey)) {
+                  node.value = this[dataKey] // 数据修改视图
+                  this.addWatcher(dataKey, node, 'value') // 添加watcher
+                }
+                // 绑定视图更新数据的事件
+                node.addEventListener('input', (event) => {
+                  console.log('V -> M：用户修改视图input.value，触发了节点的input事件')
+                  console.log(`节点的input事件绑定的函数执行，修改了vm.${dataKey}的值，触发vm.${dataKey}的set方法`)
+                  // 触发vm.dataKey的set方法
+                  this[dataKey] = node.value // 视图修改数据
+                })
+                node.removeAttribute('v-model') // 移除v-model指令
+              }
+              if (node.hasAttribute('@click')) {
+                let dataKey = node.getAttribute('@click').trim()
+                node.addEventListener('click', (event) => {
+                  this.eventFn = this.$options.methods[dataKey]
+                  this.eventFn(event)
+                })
+              }
+            }
+            // 递归编译当前节点的子节点
+            if (node.childNodes.length > 0) {
+              this.compile(node)
+            }
+            // 当前节点是文本
+            if (node.nodeType === 3) {
+              // 对{{}}进行编译
+              let reg = /\{\{(.*?)\}\}/g
+              let text = node.textContent
+              node.textContent = text.replace(reg, (match, dataKey) => {
+                dataKey = dataKey.trim()
+                if (this.hasOwnProperty(dataKey)) {
+                  this.addWatcher(dataKey, node, 'textContent')
+                }
+                return this[dataKey]
+              })
+            }
+          })
+        }
+
+        addWatcher(dataKey, node, prop) {
+          let watcher = new Watch(this, dataKey, node, prop) // 创建watcher
+          // 将 watcher添加到this.$watchEvent[dataKey]
+          if (this.$watchEvent[dataKey]) {
+            this.$watchEvent[dataKey].push(watcher)
+          } else {
+            this.$watchEvent[dataKey] = []
+            this.$watchEvent[dataKey].push(watcher)
+          }
+        }
+      }
+      // 创建用于更新视图的类
+      class Watch {
+        constructor(vm, dataKey, node, prop, nodeType) {
+          this.vm = vm // 实例化的app对象
+          this.dataKey = dataKey //绑定的vm触发的属性
+          this.node = node // 此vm[dataKey]数据绑定的HTML节点
+          this.prop = prop //vm数据绑定的HTML节点的属性名称
+        }
+        //M -> V
+        update() {
+          // 更新前
+          if (typeof options.beforeUpdate === 'function') {
+            options.beforeUpdate.bind(this)()
+          }
+          console.log(`M -> V：set方法调用watcher的update方法更新了`, this.node, '节点的视图')
+          this.node[this.prop] = this.vm[this.dataKey] // 数据修改视图
+
+          // 更新后
+          if (typeof options.updated === 'function') {
+            options.updated.bind(this)()
+          }
+        }
+      }
+    </script>
+    <script>
+      let options = {
+        el: '#app',
+        data: {
+          msg: 'message',
+        },
+        methods: {
+          changeEvent() {
+            this.msg = 'Hello Vue'
+          },
+        },
+        beforeMount() {
+          console.log('挂载前')
+        },
+        mounted() {
+          console.log('挂载后')
+        },
+        beforeCreate() {
+          console.log('创造前')
+        },
+        created() {
+          console.log('创造后')
+        },
+        beforeUpdate() {
+          console.log('更新前')
+        },
+        updated() {
+          console.log('更新后')
+        },
+      }
+      let app = new Vue(options)
+    </script>
+  </body>
+</html>

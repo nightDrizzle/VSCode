@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="a" id="b">我是内容</div>
+    <script>
+      let vNode = {
+        tag: 'div',
+        attrs: {
+          className: 'a',
+          id: 'b',
+        },
+        text: '我是内容',
+      }
+      class VNode {
+        constructor(tag, data, children, text, ele, context, componentOptions, asyncFactory) {
+          this.tag = tag // 当前节点的标签名称
+          this.data = data // 当前节点的数据信息
+          this.children = children //当前节点的子节点数组
+          this.text = text // 当前节点的文本
+          this.ele = ele // 当前节点对应的真实DOM节点
+          this.context = context // 当前节点对应的vue实例
+          this.componentOptions = componentOptions // 当前节点的配置选项
+          this.asyncFactory = asyncFactory // 当前节点异步的工厂函数
+          this.raw = false // 是否为原生的html
+          this.isCloned = false // 是否为克隆的节点
+          this.isComment = false // 是否为注释节点
+        }
+      }
+    </script>
+  </body>
+</html>

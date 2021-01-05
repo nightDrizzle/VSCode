@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{message}}</span>
+      <example></example>
+    </div>
+    <script>
+      Vue.component('example', {
+        template: '<span>{{ message }}</span>',
+        data: function () {
+          return {
+            message: '未更新',
+          }
+        },
+        created() {
+          this.updateMessage()
+        },
+        methods: {
+          updateMessage: function () {
+            this.message = '已更新'
+            console.log(this)
+            console.log(this.$el) // => '未更新'
+            this.$nextTick(function () {
+              console.log(this)
+              console.log(this.$el.innerText) // => '已更新'
+            })
+          },
+        },
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          message: '123',
+        },
+      })
+    </script>
+  </body>
+</html>

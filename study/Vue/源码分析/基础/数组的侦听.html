@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 实现数组方法拦截器
+      const arrayProto = Array.prototype //保存原来的原型对象
+      const arrayMethods = Object.create(arrayProto) // 创建新的可侦测的数组原型对象
+      // 将改变数组自身内容的7个方法放置到数组
+      const methodsToPatch = ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse']
+      methodsToPatch.forEach((method) => {
+        const original = arrayProto[method] // 原有的数组方法
+        Object.defineProperty(arrayMethods, method, {
+          enumerable: true,
+          configurable: true,
+          writable: true,
+          value: function (...args) {
+            console.log(`通过${method}修改了数组`)
+            // 调用原有的数组方法并返回结果（result是数组方法原有的返回结果）
+            const result = original.apply(this, args)
+            return result
+          },
+        })
+      })
+
+      let arr = [1, 2, 3]
+      arr.__proto__ = arrayMethods
+      arr.push(1)
+      console.log(arr)
+      arr.pop()
+      console.log(arr)
+    </script>
+  </body>
+</html>
