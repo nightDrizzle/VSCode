@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>count:{{count}}</p>
+    </div>
+    <script>
+      const store = new Vuex.Store({
+        state: {
+          count: 0,
+        },
+        // 只能执行同步操作
+        mutations: {
+          increment(state, payload) {
+            state.count += payload.amount
+          },
+        },
+        // 可以执行异步操作
+        actions: {
+          incrementAsync({ commit }, payload) {
+            setTimeout(() => {
+              commit('increment', payload)
+            }, 1500)
+          },
+          showContext({ commit, dispatch, getters, rootState, state }) {
+            console.log(commit)
+            console.log(dispatch)
+            console.log(getters)
+            console.log(rootState)
+            console.log(state)
+          },
+        },
+      })
+      new Vue({
+        store,
+        data: {
+          msg: 'message',
+        },
+        computed: Vuex.mapState(['count']),
+        methods: {
+          ...Vuex.mapMutations([]),
+          ...Vuex.mapActions(['showContext']),
+        },
+        mounted() {
+          store.dispatch({
+            type: 'incrementAsync',
+            amount: 10,
+          })
+          this.showContext()
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

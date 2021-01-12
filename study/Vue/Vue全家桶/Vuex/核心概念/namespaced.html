@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>登录状态：<span v-if="isLogin">loadding...</span>{{isLogin}}</p>
+      <button @click="login">login</button>
+    </div>
+    <script>
+      const store = new Vuex.Store({
+        modules: {
+          account: {
+            namespaced: true,
+            state: () => ({
+              count: 1,
+              type: 'admin',
+              isLogin: false,
+            }),
+            getters: {
+              isAdmin(state, getters) {
+                return state.type === 'admin'
+              },
+            },
+            actions: {
+              login({ state }) {
+                if (state.isLogin === false) {
+                  setTimeout(() => {
+                    state.isLogin = true
+                  }, 1000)
+                }
+              },
+            },
+          },
+        },
+      })
+      new Vue({
+        store,
+        computed: {
+          ...Vuex.mapState(['count', 'type', 'isLogin']),
+          ...Vuex.mapGetters(['isAdmin']),
+        },
+        methods: {
+          ...Vuex.mapActions(['login']),
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

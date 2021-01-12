@@ -1,17 +1,17 @@
 <template>
   <div>
-    <ul class='clearfix'>
+    <ul class="clearfix">
       <li>
-        <router-link to='/foo'>foo</router-link>
+        <router-link to="/foo">foo</router-link>
       </li>
       <li>
-        <router-link to='/bar'>bar</router-link>
+        <router-link to="/bar">bar</router-link>
       </li>
       <li>
-        <router-link to='/user/chen'>/user/chen</router-link>
+        <router-link to="/user/chen">/user/chen</router-link>
       </li>
       <li>
-        <router-link to='/user/wang'>/user/wang</router-link>
+        <router-link to="/user/wang">/user/wang</router-link>
       </li>
     </ul>
     <router-view></router-view>
@@ -23,7 +23,6 @@ export default {
   name: 'Home',
   computed: {
     username() {
-      // 我们很快就会看到 `params` 是什么
       return this.$route.params.username
     },
   },

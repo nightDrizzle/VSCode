@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="counter">
+      <div>
+        <p>count:{{ count }}</p>
+        <button @click="decrement">---</button>
+        <button @click="increment">+++</button>
+        <p>name:{{name}}</p>
+        <button @click="changeName">changeName</button>
+      </div>
+    </template>
+    <script>
+      const mapState = Vuex.mapState
+      const Counter = {
+        template: '#counter',
+        computed: mapState(['count', 'name']),
+        methods: {
+          increment() {
+            store.commit('increment')
+          },
+          decrement() {
+            store.commit('decrement')
+          },
+          changeName() {
+            store.commit('changeName')
+          },
+        },
+      }
+      const store = new Vuex.Store({
+        state: {
+          count: 0,
+          id: 1,
+          old: 15,
+          name: 'zs',
+        },
+        mutations: {
+          increment: (state) => state.count++,
+          decrement: (state) => state.count--,
+          changeName: (state) => {
+            state.name += 's'
+          },
+        },
+      })
+      const app = new Vue({
+        el: '#app',
+        store,
+        components: { Counter },
+        template: `<div class="app"><counter></counter></div>`,
+      })
+    </script>
+  </body>
+</html>

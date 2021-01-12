@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>count:{{count}}</p>
+      <p>isCountOdd:{{isCountOdd}}</p>
+      <button @click="increment">+++</button>
+      <button @click="asyncIncrement">async+++</button>
+    </div>
+    <script>
+      const moduleA = {
+        state: () => ({
+          count: 1,
+        }),
+        getters: {
+          isCountOdd(state, getters, rootState) {
+            return state.count % 2 === 1
+          },
+        },
+        mutations: {
+          increment(state) {
+            state.count++
+          },
+        },
+        actions: {
+          asyncIncrement({ state }) {
+            console.log('async start')
+            setTimeout(() => {
+              state.count++
+              console.log('async end')
+            }, 2000)
+          },
+          asyncTest({ state, commit, rootState }) {
+            console.log(state)
+            console.log(commit)
+            console.log(rootState)
+          },
+        },
+      }
+      const moduleB = {
+        state: () => ({
+          b: 'b',
+        }),
+        getters: {},
+        mutations: {},
+        actions: {},
+      }
+      const store = new Vuex.Store({
+        modules: {
+          a: moduleA,
+          b: moduleB,
+        },
+      })
+      new Vue({
+        store,
+        computed: {
+          ...Vuex.mapState(['count']),
+          ...Vuex.mapGetters(['isCountOdd']),
+        },
+        methods: {
+          ...Vuex.mapMutations(['increment']),
+          ...Vuex.mapActions(['asyncIncrement', 'asyncTest']),
+        },
+        mounted() {
+          this.asyncTest()
+        },
+      }).$mount('#app')
+    </script>
+  </body>
+</html>

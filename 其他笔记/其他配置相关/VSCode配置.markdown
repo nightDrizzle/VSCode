@@ -30,11 +30,20 @@
   "prettier.semi": false, // 清除js语句结尾的分号
   "prettier.singleQuote": true,
   "prettier.printWidth": 200,
+  /*prettier-end*/
   "explorer.confirmDragAndDrop": false,
-  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.colorTheme": "Default Light+",
   "files.autoSave": "off",
   "explorer.confirmDelete": false,
-  "tabnine.experimentalAutoImports": true // 使用单引号
-  /*prettier-end*/
+  "tabnine.experimentalAutoImports": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  } // 使用单引号
 }
 ```

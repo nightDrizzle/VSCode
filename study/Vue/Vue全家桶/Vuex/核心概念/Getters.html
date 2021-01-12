@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>todos</p>
+      <ul>
+        <li v-for="todo in todos">todos:{{todo}}</li>
+      </ul>
+      <p>doneTodos</p>
+      <ul>
+        <li v-for="donetodo in doneTodos">doneTodos:{{donetodo}}</li>
+      </ul>
+      <p>doneTodosCount:{{doneTodosCount}}</p>
+    </div>
+    <script>
+      const store = new Vuex.Store({
+        state: {
+          todos: [
+            { id: 1, text: 'todo1', done: true },
+            { id: 2, text: 'todo2', done: false },
+            { id: 3, text: 'todo3', done: true },
+            { id: 4, text: 'todo4', done: false },
+            { id: 5, text: 'todo5', done: true },
+          ],
+        },
+        getters: {
+          doneTodos: (state, getters) => {
+            return state.todos.filter((todo) => todo.done)
+          },
+          doneTodosCount: (state, getters) => {
+            return getters.doneTodos.length
+          },
+          getTodoById: (state) => (id) => {
+            return state.todos.find((todo) => todo.id === id)
+          },
+        },
+      })
+      const app = new Vue({
+        el: '#app',
+        store,
+        mounted() {
+          console.log(store.getters.doneTodos)
+          console.log(store.getters.doneTodosCount)
+          console.log(store.getters.getTodoById(2).id)
+        },
+        computed: {
+          ...Vuex.mapGetters(['doneTodos', 'doneTodosCount']),
+          ...Vuex.mapState(['todos']),
+        },
+      })
+    </script>
+  </body>
+</html>

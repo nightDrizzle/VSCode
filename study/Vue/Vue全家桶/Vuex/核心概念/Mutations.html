@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{obj.num}}
+      <p>{{count}}</p>
+      <button @click="increment">count++</button>
+      <button @click="incrementBy">count+n</button>
+    </div>
+    <script>
+      const store = new Vuex.Store({
+        state: {
+          count: 1,
+        },
+        mutations: {
+          increment(state) {
+            state.count += 2
+          },
+          incrementBy(state, payload) {
+            console.log(payload)
+            state.count += payload
+          },
+        },
+      })
+      const app = new Vue({
+        store,
+        data: {
+          obj: {
+            num: 1,
+          },
+        },
+        computed: {
+          ...Vuex.mapState(['count']),
+        },
+        methods: {
+          ...Vuex.mapMutations(['increment', 'incrementBy']),
+          // increment() {
+          //   store.commit({
+          //     type: 'increment',
+          //     amount: 10,
+          //   })
+          // },
+        },
+        mounted() {},
+      }).$mount('#app')
+    </script>
+  </body>
+</html>
