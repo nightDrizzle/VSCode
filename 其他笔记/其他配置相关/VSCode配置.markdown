@@ -3,47 +3,80 @@
 ```json
 {
   "editor.tabSize": 2,
-  "editor.formatOnPaste": true, // 粘贴时格式化
-  "editor.formatOnSave": true, // 保存时格式化
-
-  /*prettier-start*/
-  "vetur.format.defaultFormatter.html": "prettier",
-  "vetur.format.defaultFormatter.pug": "prettier",
-  "vetur.format.defaultFormatter.css": "prettier",
-  "vetur.format.defaultFormatter.postcss": "prettier",
-  "vetur.format.defaultFormatter.scss": "prettier",
-  "vetur.format.defaultFormatter.less": "prettier",
-  "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
-  "vetur.format.defaultFormatter.js": "prettier",
-  "vetur.format.defaultFormatter.ts": "prettier",
-  "vetur.format.defaultFormatter.sass": "sass-formatter",
-  "vetur.format.defaultFormatterOptions": {
-    "prettier": {
-      "printWidth": 200,
-      "singleQuote": true,
-      "semi": false
-    }
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "prettier.semi": false, // 清除js语句结尾的分号
-  "prettier.singleQuote": true,
-  "prettier.printWidth": 200,
-  /*prettier-end*/
+  "editor.formatOnSave": true, // 保存时自动格式化 
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }, // 保存时以eslint格式进行修复
   "explorer.confirmDragAndDrop": false,
   "workbench.colorTheme": "Default Light+",
   "files.autoSave": "off",
   "explorer.confirmDelete": false,
-  "tabnine.experimentalAutoImports": true,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "eslint.format.enable": true,
+  // "[vue]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.lintTask.enable": false,
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": false,
+      "singleQuote": true,
+      "trailingComma": "none",
+      "printWidth": 200
+    },
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
+    },
+    "prettyhtml": {
+      "printWidth": 200,
+      "singleQuote": true,
+      "wrapAttributes": false,
+      "sortAttributes": false
+    }
   },
   "[vue]": {
     "editor.defaultFormatter": "octref.vetur"
+  }
+}
+```
+
+
+### 保存自动eslint，格式化使用vetur
+```json
+{
+  "editor.tabSize": 2,
+  // "editor.formatOnSave": true, // 保存时自动格式化 
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }, // 保存时以eslint格式进行修复
+  "explorer.confirmDragAndDrop": false,
+  "workbench.colorTheme": "Default Light+",
+  "files.autoSave": "off",
+  "explorer.confirmDelete": false,
+  "eslint.format.enable": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.lintTask.enable": false,
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": false,
+      "singleQuote": true,
+      "trailingComma": "none",
+      "printWidth": 115
+    },
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
+    },
+    "prettyhtml": {
+      "printWidth": 200,
+      "singleQuote": true,
+      "wrapAttributes": false,
+      "sortAttributes": false
+    }
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  } // 使用单引号
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  }
 }
 ```

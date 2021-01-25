@@ -1,4 +1,4 @@
-# element-ui
+# element_demo
 
 ## Project setup
 ```
