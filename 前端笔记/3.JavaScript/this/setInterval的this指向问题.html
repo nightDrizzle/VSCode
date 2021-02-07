@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function doSomething() {
+        console.log(this) // window
+        let count = 0
+        console.log(this.count) // undefined
+        console.log(window.count) // undefined
+        console.log(this.count++) // NaN
+        console.log(window.count) // NaN
+        console.log(this === window) // true
+        clearInterval(timeID)
+      }
+      let timeID = setInterval(doSomething, 1000)
+      function printNumber() {
+        let count = 0
+        console.log(count) // 0
+      }
+      setInterval(() => {
+        printNumber()
+      }, 1000)
+    </script>
+  </body>
+</html>

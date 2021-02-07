@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script src="../../node_modules/react/umd/react.development.js"></script>
+    <script src="../../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../../node_modules/babel-standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class LoggingButton extends React.Component {
+        constructor(props) {
+          super(props)
+        }
+        handleClick = (eventName, e) => {
+          console.log('this is:', this) // this is:LogginButton
+          console.log(eventName)
+          console.log(e)
+        }
+        handleSomeAction=(eventName, e)=> {
+          console.log('this is:', this) // this is:undefined
+          console.log(eventName)
+        }
+        render() {
+          return (
+            <button onMouseEnter={this.handleSomeAction.bind(this,'mouseover')} onClick={(e) => this.handleClick('click', e)}>
+              Click me
+            </button>
+          )
+        }
+      }
+      ReactDOM.render(<LoggingButton />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

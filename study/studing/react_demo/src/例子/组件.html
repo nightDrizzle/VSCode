@@ -11,24 +11,20 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function Welcome() {
-        return <p>Welcome to china</p>
+      function Welcome(props) {
+        return <li>Welcome {props.name}</li>
       }
-      class Hello extends React.Component {
-        render() {
-          return (
-            <ul>
-              <li>
-                <Welcome />
-              </li>
-              <li>
-                <p>Hello china</p>
-              </li>
-            </ul>
-          )
-        }
+      function App(props) {
+        return (
+          <ul>
+            <Welcome name={props.nameList[0]} />
+            <Welcome name={props.nameList[1]} />
+            <Welcome name={props.nameList[2]} />
+          </ul>
+        )
       }
-      ReactDOM.render(<Hello />, document.querySelector('#root'))
+      const nameList = ['zhangsan', 'lisi', 'wanger']
+      ReactDOM.render(<App nameList={nameList} />, document.querySelector('#root'))
     </script>
   </body>
 </html>
