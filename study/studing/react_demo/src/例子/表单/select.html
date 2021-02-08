@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      /**
+       *
+       */
+      class FlavorForm extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { selected: 'lime' }
+          this.handleSubmit = this.handleSubmit.bind(this)
+          this.handleChange = this.handleChange.bind(this)
+        }
+        handleSubmit(event) {
+          alert(this.state.value)
+          event.preventDefault()
+        }
+        handleChange(event) {
+          this.setState({ value: event.target.value })
+        }
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                选择你的水果
+                <select selected={this.state.value} onChange={this.handleChange}>
+                  <option value="grapefruit">葡萄柚</option>
+                  <option value="lime">酸橙</option>
+                  <option value="coconut">椰子</option>
+                  <option value="mango">芒果</option>
+                </select>
+              </label>
+              <input type="submit" value="submit" />
+            </form>
+          )
+        }
+      }
+      ReactDOM.render(<FlavorForm />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

@@ -4,24 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Document</title>
-    <script src="../node_modules/react/umd/react.development.js"></script>
-    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
-    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script> -->
   </head>
   <body>
-    <div id="root"></div>
-    <script type="text/babel">
-      function tick() {
-        const element = (
-          <div>
-            <h1>Hello, world!</h1>
-            <h2>It is {new Date().toLocaleTimeString()}.</h2>
-          </div>
-        )
-        ReactDOM.render(element, document.getElementById('root'))
+    <select onchange="handleChange()">
+      <option value="grapefruit">葡萄柚</option>
+      <option value="lime">酸橙</option>
+      <option value="coconut" selected>椰子</option>
+      <option value="mango">芒果</option>
+    </select>
+    <script>
+      function handleChange(event) {
+        console.dir(document.querySelector('select').value)
       }
-
-      setInterval(tick, 1000)
     </script>
   </body>
 </html>

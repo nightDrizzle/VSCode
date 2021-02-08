@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class ConditionalOperator extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { isLoggedIn: ture }
+        }
+        render() {
+          const isLoggedIn = this.state.isLoggedIn
+          return <div>{isLoggedIn ? <h1>已登录</h1> : <h1>未登录</h1>}</div>
+        }
+      }
+      ReactDOM.render(<ConditionalOperator />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

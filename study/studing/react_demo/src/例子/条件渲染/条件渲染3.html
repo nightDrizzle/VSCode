@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function MyGreeting(props) {
+        const name = props.name
+        return name === 'lanye' && <h2>{props.id}:hello lanye</h2>
+      }
+      function App(props) {
+        return (
+          <div>
+            <MyGreeting id="1" name="lanye" />
+            <MyGreeting id="2" name="lanye1" />
+            <MyGreeting id="3" name="lanye2" />
+            <MyGreeting id="4" name="lanye3" />
+            <MyGreeting id="5" name="lanye" />
+          </div>
+        )
+      }
+      ReactDOM.render(<App name="lanye" />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

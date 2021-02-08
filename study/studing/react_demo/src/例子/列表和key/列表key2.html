@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Post(props) {
+        const posts = props.posts
+        const sidebar = (
+          <ul>
+            {posts.map((post) => (
+              <li key={post.id}>{post.title}</li>
+            ))}
+          </ul>
+        )
+        const content = posts.map((post) => (
+          <div key={post.id}>
+            <h1>{post.title}</h1>
+            <h2>{props.key}</h2>
+            <p>{post.content}</p>
+          </div>
+        ))
+        return (
+          <div>
+            {sidebar}
+            <hr />
+            {content}
+          </div>
+        )
+      }
+      const posts = [
+        { id: 1, title: 'Hello World', content: 'Welcome to learning React!' },
+        { id: 2, title: 'Installation', content: 'You can install React from npm.' }
+      ]
+      ReactDOM.render(<Post posts={posts} />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

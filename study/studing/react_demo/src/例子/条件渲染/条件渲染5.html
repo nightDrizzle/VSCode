@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <style>
+      .banner {
+        background-color: red;
+        height: 50px;
+      }
+    </style>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Banner(props) {
+        if (props.isHidden) {
+          return null
+        }
+        return <div className="banner">Warning</div>
+      }
+      function ToggleButton(props) {
+        return <button onClick={props.onClick}>{props.isHidden ? 'hide' : 'show'}</button>
+      }
+      class Page extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { isHidden: false }
+          this.handleClick = this.handleClick.bind(this)
+        }
+        handleClick() {
+          this.setState(() => {
+            return { isHidden: !this.state.isHidden }
+          })
+        }
+        render() {
+          return (
+            <div>
+              <Banner isHidden={this.state.isHidden} />
+              <ToggleButton isHidden={this.state.isHidden} onClick={this.handleClick} />
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<Page />, document.getElementById('root'))
+    </script>
+  </body>
+</html>
