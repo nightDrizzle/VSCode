@@ -9,16 +9,10 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script> -->
   </head>
   <body>
-    <select onchange="handleChange()">
-      <option value="grapefruit">葡萄柚</option>
-      <option value="lime">酸橙</option>
-      <option value="coconut" selected>椰子</option>
-      <option value="mango">芒果</option>
-    </select>
+    <input type="file" name="myfile" id="" />
     <script>
-      function handleChange(event) {
-        console.dir(document.querySelector('select').value)
-      }
+      let fileDOM = document.querySelector('input[type=file]')
+      console.dir(fileDOM.name, fileDOM.value)
     </script>
   </body>
 </html>
