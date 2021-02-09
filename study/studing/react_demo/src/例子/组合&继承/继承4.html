@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <style>
+      .box {
+        padding: 20px;
+      }
+      .bluebox {
+        border: 3px solid blue;
+      }
+    </style>
+    <div id="root"></div>
+    <script type="text/babel">
+      function BlueBox(props) {
+        return <div className="box bluebox">{props.children}</div>
+      }
+      function Dialog(props) {
+        return (
+          <BlueBox>
+            <h1>{props.title}</h1>
+            <h3>{props.message}</h3>
+            {props.children}
+          </BlueBox>
+        )
+      }
+      class SignUpDialog extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { value: '' }
+          this.handleChange = this.handleChange.bind(this)
+          this.handleSubmit = this.handleSubmit.bind(this)
+        }
+        handleChange(event) {
+          this.setState({ value: event.target.value })
+        }
+        handleSubmit(event) {
+          alert(this.state.value)
+          event.preventDefault()
+        }
+        render() {
+          const value = this.state.value
+          return (
+            <Dialog title="title" message="message">
+              <form onSubmit={this.handleSubmit}>
+                <input type="text" value={value} onChange={this.handleChange} />
+                <input type="submit" value="sign me up" />
+              </form>
+            </Dialog>
+          )
+        }
+      }
+      ReactDOM.render(<SignUpDialog />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

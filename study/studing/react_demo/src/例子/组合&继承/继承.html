@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <style>
+      .pernson {
+        border: black solid 2px;
+      }
+      .person-worker {
+        border: aqua solid 2px;
+      }
+      .person-student {
+        border: orangered solid 2px;
+      }
+    </style>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Person(props) {
+        return (
+          <div className={'pernson person-' + props.role}>
+            <h1>this is a person</h1>
+            {props.children}
+          </div>
+        )
+      }
+      function Chinese(props) {
+        return (
+          <Person role={props.role}>
+            <h2>this is a Chinese</h2>
+            {props.children}
+          </Person>
+        )
+      }
+      function Worker(props) {
+        return (
+          <Chinese role="worker">
+            <h3>this is a worker</h3>
+          </Chinese>
+        )
+      }
+      function Student(props) {
+        return (
+          <Chinese role="student">
+            <h3>this is a student</h3>
+          </Chinese>
+        )
+      }
+      class App extends React.Component {
+        constructor(props) {
+          super(props)
+        }
+        render() {
+          return (
+            <div>
+              <Worker />
+              <Student />
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

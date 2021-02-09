@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function FancyBoreder(props) {
+        return <div>{props.children}</div>
+      }
+      // 一般组件
+      function Dialog(props) {
+        return (
+          <FancyBoreder>
+            <h1>{props.title}</h1>
+            <p>{props.message}</p>
+          </FancyBoreder>
+        )
+      }
+      // 特殊组件
+      function WelcomeDialog() {
+        return <Dialog title="welcome1" message="thank you1"></Dialog>
+      }
+      ReactDOM.render(<WelcomeDialog />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

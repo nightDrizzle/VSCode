@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Contacts() {
+        return <div>Contacts</div>
+      }
+      function Chat() {
+        return <div>Chat</div>
+      }
+      function SplitPane(props) {
+        return (
+          <div>
+            <div className="left">{props.children}</div>
+            <div className="left">{props.left}</div>
+            <div className="right">{props.right}</div>
+          </div>
+        )
+      }
+      function App() {
+        return (
+          <SplitPane left={<Contacts />} right={<Chat />}>
+            <h1>this is children</h1>
+          </SplitPane>
+        )
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>
