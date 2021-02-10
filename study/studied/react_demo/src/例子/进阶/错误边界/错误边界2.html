@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { hasError: false }
+        }
+
+        static getDerivedStateFromError(error) {
+          // 更新 state 使下一次渲染可以显降级 UI
+          return { hasError: true }
+        }
+
+        render() {
+          if (this.state.hasError) {
+            // 你可以渲染任何自定义的降级  UI
+            return <h1>Something went wrong.</h1>
+          }
+
+          return this.props.children
+        }
+      }
+      class Article extends React.Component {
+        render() {
+          console.log(value)
+          return (
+            <div>
+              <h1>title</h1>
+              <h2>content</h2>
+            </div>
+          )
+        }
+      }
+      class App extends React.Component {
+        render() {
+          return (
+            <ErrorBoundary>
+              <Article></Article>
+            </ErrorBoundary>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

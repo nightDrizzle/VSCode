@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // This mimics user data we might load from a server.
+      const fakeUser = {
+        id: 1,
+        name: 'Brian Vaughn',
+        email: 'fake.email@example.com'
+      }
+
+      // Because ControlledEmailInput is a controlled component,
+      // This component is responsible for managing both the "commited"
+      // and "draft" email values.
+      class App extends React.Component {
+        state = {
+          draftEmail: this.props.user.email
+        }
+
+        handleEmailChange = (event) => {
+          this.setState({ draftEmail: event.target.value })
+        }
+
+        resetForm = () => {
+          this.setState({
+            draftEmail: this.props.user.email
+          })
+        }
+
+        render() {
+          return (
+            <React.Fragment>
+              <h1>This demo illustrates a fully controlled component</h1>
+              <blockquote>Make some changes to the field below:</blockquote>
+              <ControlledEmailInput
+                email={this.state.draftEmail}
+                handleChange={this.handleEmailChange}
+              />
+              <blockquote>Then click the reset button:</blockquote>
+              <button onClick={this.resetForm}>Reset</button>
+              <p>
+                Read the inline comments in <code>ControlledEmailInput.js</code> and{' '}
+                <code>index.js</code> to learn more.
+              </p>
+            </React.Fragment>
+          )
+        }
+      }
+
+      ReactDOM.render(<App user={fakeUser} />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

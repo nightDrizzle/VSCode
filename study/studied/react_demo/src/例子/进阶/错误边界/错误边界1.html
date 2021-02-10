@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { error: null, errorInfo: null }
+        }
+
+        componentDidCatch(error, errorInfo) {
+          this.setState({
+            error: error,
+            errorInfo: errorInfo
+          })
+        }
+
+        render() {
+          if (this.state.errorInfo) {
+            return (
+              <div className="error-render">
+                <h2>Something went wrong.</h2>
+                <details style={{ whiteSpace: 'pre-wrap' }}>
+                  {this.state.error && this.state.error.toString()}
+                  <br />
+                  {this.state.errorInfo.componentStack}
+                </details>
+              </div>
+            )
+          }
+          return this.props.children
+        }
+      }
+
+      class BuggyCounter extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { counter: 0 }
+          this.handleClick = this.handleClick.bind(this)
+        }
+
+        handleClick() {
+          this.setState(({ counter }) => ({
+            counter: counter + 1
+          }))
+        }
+
+        render() {
+          if (this.state.counter === 2) {
+            throw new Error('I crashed!')
+          }
+          return <h1 onClick={this.handleClick}>{this.state.counter}</h1>
+        }
+      }
+
+      function App() {
+        return (
+          <ErrorBoundary>
+            <p>ErrorBoundary</p>
+            <BuggyCounter />
+          </ErrorBoundary>
+        )
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

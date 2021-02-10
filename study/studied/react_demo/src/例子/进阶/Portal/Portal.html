@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="app-root"></div>
+    <div id="modal-root"></div>
+    <script type="text/babel">
+      const appRoot = document.getElementById('app-root')
+      const modalRoot = document.getElementById('modal-root')
+
+      class Modal extends React.Component {
+        constructor(props) {
+          super(props)
+          this.el = document.createElement('div')
+        }
+        componentDidMount() {
+          modalRoot.appendChild(this.el)
+        }
+
+        componentWillUnmount() {}
+        render() {
+          return ReactDOM.createPortal(this.props.children, this.el)
+        }
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props)
+        }
+
+        render() {
+          const modal = (
+            <Modal>
+              <h2>model</h2>
+            </Modal>
+          )
+
+          return (
+            <React.Fragment>
+              <h1>APP</h1>
+              {modal}
+            </React.Fragment>
+          )
+        }
+      }
+
+      ReactDOM.render(<App />, appRoot)
+    </script>
+  </body>
+</html>
