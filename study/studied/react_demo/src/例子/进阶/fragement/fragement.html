@@ -7,18 +7,29 @@
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/create-react-class/15.7.0/create-react-class.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="container"></div>
     <script type="text/babel">
-      var HelloMessage = createReactClass({
-        render: function () {
-          return <div className={this.props.title}>Hello react</div>
+      function ArticleFragement(props) {
+        return (
+          <>
+            <td>Hello</td>
+            <td>World</td>
+          </>
+        )
+      }
+      class Columns extends React.Component {
+        render() {
+          return (
+            <div>
+              <p>my Columns</p>
+              <ArticleFragement />
+            </div>
+          )
         }
-      })
-      let root = document.getElementById('root')
-      ReactDOM.render(<HelloMessage name="name" title="title" />, root)
+      }
+      ReactDOM.render(<Columns />, document.getElementById('container'))
     </script>
   </body>
 </html>
