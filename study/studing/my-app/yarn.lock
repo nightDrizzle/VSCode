@@ -1613,9 +1613,9 @@
     "@testing-library/dom" "^7.28.1"
 
 "@testing-library/user-event@^12.1.10":
-  version "12.6.3"
-  resolved "https://registry.npm.taobao.org/@testing-library/user-event/download/@testing-library/user-event-12.6.3.tgz#4a77c56a48823cf8adebd0f57670e4a89c24d058"
-  integrity sha1-SnfFakiCPPit69D1dnDkqJwk0Fg=
+  version "12.7.1"
+  resolved "https://registry.npm.taobao.org/@testing-library/user-event/download/@testing-library/user-event-12.7.1.tgz?cache=0&sync_timestamp=1613216951004&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40testing-library%2Fuser-event%2Fdownload%2F%40testing-library%2Fuser-event-12.7.1.tgz#e1ce931c04a1c65faf28618442d56ba8da887f2c"
+  integrity sha1-4c6THAShxl+vKGGEQtVrqNqIfyw=
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -1626,7 +1626,7 @@
 
 "@types/aria-query@^4.2.0":
   version "4.2.1"
-  resolved "https://registry.npm.taobao.org/@types/aria-query/download/@types/aria-query-4.2.1.tgz#78b5433344e2f92e8b306c06a5622c50c245bf6b"
+  resolved "https://registry.npm.taobao.org/@types/aria-query/download/@types/aria-query-4.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Faria-query%2Fdownload%2F%40types%2Faria-query-4.2.1.tgz#78b5433344e2f92e8b306c06a5622c50c245bf6b"
   integrity sha1-eLVDM0Ti+S6LMGwGpWIsUMJFv2s=
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
@@ -1721,7 +1721,7 @@
 
 "@types/jest@*":
   version "26.0.20"
-  resolved "https://registry.npm.taobao.org/@types/jest/download/@types/jest-26.0.20.tgz#cd2f2702ecf69e86b586e1f5223a60e454056307"
+  resolved "https://registry.npm.taobao.org/@types/jest/download/@types/jest-26.0.20.tgz?cache=0&sync_timestamp=1613378834168&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjest%2Fdownload%2F%40types%2Fjest-26.0.20.tgz#cd2f2702ecf69e86b586e1f5223a60e454056307"
   integrity sha1-zS8nAuz2noa1huH1Ijpg5FQFYwc=
   dependencies:
     jest-diff "^26.0.0"
@@ -1791,7 +1791,7 @@
 
 "@types/testing-library__jest-dom@^5.9.1":
   version "5.9.5"
-  resolved "https://registry.npm.taobao.org/@types/testing-library__jest-dom/download/@types/testing-library__jest-dom-5.9.5.tgz#5bf25c91ad2d7b38f264b12275e5c92a66d849b0"
+  resolved "https://registry.npm.taobao.org/@types/testing-library__jest-dom/download/@types/testing-library__jest-dom-5.9.5.tgz?cache=0&sync_timestamp=1613384648444&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Ftesting-library__jest-dom%2Fdownload%2F%40types%2Ftesting-library__jest-dom-5.9.5.tgz#5bf25c91ad2d7b38f264b12275e5c92a66d849b0"
   integrity sha1-W/Jcka0tezjyZLEideXJKmbYSbA=
   dependencies:
     "@types/jest" "*"
@@ -8928,7 +8928,7 @@ react-dev-utils@^11.0.2:
 
 react-dom@^17.0.1:
   version "17.0.1"
-  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-17.0.1.tgz?cache=0&sync_timestamp=1612887513839&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dom%2Fdownload%2Freact-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
+  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-17.0.1.tgz?cache=0&sync_timestamp=1613578838842&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dom%2Fdownload%2Freact-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
   integrity sha1-HeJWBHTsnw4zQoVmLt5S28VCb8Y=
   dependencies:
     loose-envify "^1.1.0"
@@ -9023,7 +9023,7 @@ react-scripts@4.0.2:
 
 react@^17.0.1:
   version "17.0.1"
-  resolved "https://registry.npm.taobao.org/react/download/react-17.0.1.tgz?cache=0&sync_timestamp=1612887260658&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
+  resolved "https://registry.npm.taobao.org/react/download/react-17.0.1.tgz?cache=0&sync_timestamp=1613578845340&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
   integrity sha1-bgYAQWvVdXTj+G2S7bo9kAhyYSc=
   dependencies:
     loose-envify "^1.1.0"
@@ -9535,7 +9535,7 @@ saxes@^5.0.0:
 
 scheduler@^0.20.1:
   version "0.20.1"
-  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.20.1.tgz?cache=0&sync_timestamp=1612887268725&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.20.1.tgz#da0b907e24026b01181ecbc75efdc7f27b5a000c"
+  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.20.1.tgz?cache=0&sync_timestamp=1613578839692&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.20.1.tgz#da0b907e24026b01181ecbc75efdc7f27b5a000c"
   integrity sha1-2guQfiQCawEYHsvHXv3H8ntaAAw=
   dependencies:
     loose-envify "^1.1.0"
