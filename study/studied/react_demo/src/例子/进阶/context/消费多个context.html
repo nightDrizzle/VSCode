@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <style>
+      .app {
+        padding: 10px;
+        border: 1px solid black;
+      }
+    </style>
+    <div id="root"></div>
+    <script type="text/babel">
+      // Theme context，默认的 theme 是 “light” 值
+      const ThemeContext = React.createContext('blue')
+
+      // 用户登录 context
+      const UserContext = React.createContext({
+        name: 'Guest',
+        id: 3
+      })
+
+      class App extends React.Component {
+        render() {
+          const { user, theme } = this.props
+
+          // 提供初始 context 值的 App 组件
+          return (
+            <ThemeContext.Provider value={theme}>
+              <UserContext.Provider value={user}>
+                <Layout />
+              </UserContext.Provider>
+            </ThemeContext.Provider>
+          )
+        }
+      }
+
+      function Layout() {
+        return (
+          <div>
+            <Content />
+          </div>
+        )
+      }
+
+      // 一个组件可能会消费多个 context
+      function Content() {
+        return (
+          <ThemeContext.Consumer>
+            {(theme) => (
+              <UserContext.Consumer>
+                {(user) => <ProfilePage user={user} theme={theme} />}
+              </UserContext.Consumer>
+            )}
+          </ThemeContext.Consumer>
+        )
+      }
+      function ProfilePage(props) {
+        return <div style={{ backgroundColor: props.theme }}>{props.user}</div>
+      }
+      ReactDOM.render(<App user="lanye" theme="blue" />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

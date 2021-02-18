@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Cat extends React.Component {
+        render() {
+          return <div>Cat</div>
+        }
+      }
+      class Dog extends React.Component {
+        render() {
+          return <div>Dog</div>
+        }
+      }
+      class Box extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1>box</h1>
+              {this.props.innerAnimal()}
+            </div>
+          )
+        }
+      }
+      class App extends React.Component {
+        render() {
+          // 使用render props的好处：可以随意修改Box内部渲染的内容
+          return <Box innerAnimal={() => [<Dog key="dog" />, <Cat key="cat" />]} />
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

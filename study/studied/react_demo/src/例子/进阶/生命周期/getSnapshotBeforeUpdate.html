@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class ScrollingList extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { inputValue: '' }
+        }
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+          if (true) {
+            return 100
+          }
+          return null
+        }
+        handleEmailChange = (event) => {
+          console.log(event)
+          this.setState({ inputValue: event.target.value })
+        }
+        componentDidUpdate(prevProps, prevState, snapshot) {
+          console.log(snapshot)
+        }
+
+        render() {
+          return <CustomInput value={this.state.inputValue} handleChange={this.handleEmailChange} />
+        }
+      }
+      class CustomInput extends React.Component {
+        render() {
+          return <input type="text" onChange={this.props.handleChange} value={this.props.value} />
+        }
+      }
+      ReactDOM.render(<ScrollingList />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

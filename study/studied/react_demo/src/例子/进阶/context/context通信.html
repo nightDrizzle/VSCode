@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const context = {
+        theme: 'darkblue', // 父传子
+        getData: () => {} // 子传父
+      }
+      const ThemeContext = React.createContext(context)
+      class Parent extends React.Component {
+        render() {
+          return (
+            <div>
+              <Child />
+            </div>
+          )
+        }
+      }
+      class Child extends React.Component {
+        render() {
+          return (
+            <ThemeContext.Consumer>
+              {({ theme, getData }) => (
+                <button
+                  onClick={getData.bind(this, 'data from child')}
+                  style={{ backgroundColor: theme }}
+                >
+                  child
+                </button>
+              )}
+            </ThemeContext.Consumer>
+          )
+        }
+      }
+      class App extends React.Component {
+        getData = (data) => {
+          console.log(data)
+        }
+        render() {
+          return (
+            <ThemeContext.Provider value={{ theme: 'darkblue', getData: this.getData }}>
+              <Parent />
+            </ThemeContext.Provider>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

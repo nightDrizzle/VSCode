@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class CounterButton extends React.Component {
+        constructor(props) {
+          let xhr = new XMLHttpRequest()
+          xhr.open('get', './1.txt', true)
+          xhr.onload = function () {
+            console.log(this.responseText)
+          }
+          xhr.send()
+          super(props)
+          this.state = { count: 1 }
+        }
+        componentDidMount() {
+          console.log(this.props.color)
+        }
+        shouldComponentUpdate(nextProps, nextState) {
+          if (this.props.color !== nextProps.color) {
+            console.log(nextProps.color)
+            return true
+          }
+          if (this.state.count !== nextState.count) {
+            return true
+          }
+          return false
+        }
+        handleClick = () => {
+          const colors = ['red', 'blue', 'yellow']
+          this.setState((state) => ({ count: state.count + 1 }))
+          this.props.onPropsChange(colors[this.state.count % 3])
+        }
+        render() {
+          return (
+            <button color={this.props.color} onClick={this.handleClick}>
+              Count: {this.state.count}
+            </button>
+          )
+        }
+      }
+      class App extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { color: 'red' }
+        }
+        handleClick = (color) => {
+          this.setState({ color: color })
+        }
+        render() {
+          return <CounterButton onPropsChange={this.handleClick} color={this.state.color} />
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 3.子组件绑定props传递的方法，并使用bind传参
+      class ChildComponent extends React.Component {
+        componentDidMount() {
+          const data = [
+            { id: 1, name: 'zhangsan' },
+            { id: 1, name: 'lisi' }
+          ]
+          const { getData } = this.props
+          setTimeout(() => {
+            getData(data)
+          }, 2000)
+        }
+        render() {
+          return <button>child</button>
+        }
+      }
+      class ParentComponent extends React.Component {
+        // 1.父组件编写事件处理程序
+        getData = (data) => {
+          console.log(data)
+        }
+        render() {
+          // 2.父组件通过props传递事件处理程序
+          return <ChildComponent getData={this.getData} />
+        }
+      }
+      ReactDOM.render(<ParentComponent />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

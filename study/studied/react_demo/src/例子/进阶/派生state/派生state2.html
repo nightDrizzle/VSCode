@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class EmailInput extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            email: props.defaultEmail,
+            prevPropsUserID: props.userID // 用于判断更改后的props和之前是否相等
+          }
+        }
+        handleChange = (event) => {
+          this.setState({ email: event.target.value })
+        }
+        //作用：根据props的改变修改派生state
+        static getDerivedStateFromProps(props, state) {
+          if (props.userID !== state.prevPropsUserID) {
+            return {
+              email: props.defaultEmail,
+              prevPropsUserID: props.userID
+            }
+          }
+          return null
+        }
+        render() {
+          return (
+            <label>
+              Email:
+              <input type="text" onChange={this.handleChange} value={this.state.email} />
+            </label>
+          )
+        }
+      }
+      class AccountsList extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { selectedIndex: 0 }
+        }
+        render() {
+          const { accounts } = this.props
+          const { selectedIndex } = this.state
+          const selectedAccount = accounts[selectedIndex]
+          return (
+            <div>
+              <EmailInput userID={selectedAccount.id} defaultEmail={selectedAccount.email} />
+              <label>
+                {accounts.map((account, index) => (
+                  <label key={account.id}>
+                    <input
+                      type="radio"
+                      name="account"
+                      onChange={() => {
+                        this.setState({ selectedIndex: index })
+                      }}
+                      checked={selectedIndex === index}
+                    />
+                    {account.name}
+                  </label>
+                ))}
+              </label>
+            </div>
+          )
+        }
+      }
+      const fakeAccounts = [
+        {
+          id: 1,
+          name: 'One',
+          email: 'fake.email@example.com'
+        },
+        {
+          id: 2,
+          name: 'Two',
+          email: 'fake.email@example.com'
+        }
+      ]
+      ReactDOM.render(<AccountsList accounts={fakeAccounts} />, document.getElementById('root'))
+    </script>
+  </body>
+</html>
