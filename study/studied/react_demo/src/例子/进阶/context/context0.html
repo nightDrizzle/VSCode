@@ -11,21 +11,36 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      const data = ['App', 'GrandParent', 'Parent', 'Person']
+      const data = 'person'
       const DataContext = React.createContext(data)
       class App extends React.Component {
         render() {
           return (
-            <DataContext.Provider value={['App', 'GrandParent', 'Parent', 'test']}>
-              <GrandParent />
-            </DataContext.Provider>
+            <div>
+              <DataContext.Provider value={'people'}>
+                <GrandParent />
+              </DataContext.Provider>
+            </div>
           )
         }
       }
       class GrandParent extends React.Component {
+        static contextType = DataContext
         render() {
           return (
             <div>
+              <h1>{this.context}</h1>
+              <Parent />
+            </div>
+          )
+        }
+      }
+      class GrandParent2 extends React.Component {
+        static contextType = DataContext
+        render() {
+          return (
+            <div>
+              <h1>{this.context}</h1>
               <Parent />
             </div>
           )
@@ -43,7 +58,7 @@
       class Person extends React.Component {
         static contextType = DataContext
         render() {
-          return <div>{this.context[3]}</div>
+          return <div>{this.context}</div>
         }
       }
 

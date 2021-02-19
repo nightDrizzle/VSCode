@@ -11,20 +11,26 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      // 3.子组件绑定props传递的方法，并使用bind传参
       class ChildComponent extends React.Component {
         componentDidMount() {
           const data = [
             { id: 1, name: 'zhangsan' },
-            { id: 1, name: 'lisi' }
+            { id: 2, name: 'lisi' }
           ]
           const { getData } = this.props
+          // 3.子组件绑定props传递的方法，并使用bind传参（通过生命周期）
           setTimeout(() => {
             getData(data)
           }, 2000)
         }
         render() {
-          return <button>child</button>
+          const { getData } = this.props
+          const data = [
+            { id: 1, name: 'a' },
+            { id: 2, name: 'b' }
+          ]
+          // 3.子组件绑定props传递的方法，并使用bind传参（通过监听器）
+          return <button onClick={getData.bind(this, data)}>child</button>
         }
       }
       class ParentComponent extends React.Component {
