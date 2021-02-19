@@ -18,7 +18,7 @@
             { id: 2, name: 'lisi' }
           ]
           const { getData } = this.props
-          // 3.子组件绑定props传递的方法，并使用bind传参（通过生命周期）
+          // 3.子组件调用props传递的方法（通过生命周期）
           setTimeout(() => {
             getData(data)
           }, 2000)
