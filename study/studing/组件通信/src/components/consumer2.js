@@ -7,6 +7,7 @@ export default class Consumer1 extends Component {
       <div className="child">
         <button>consumer2</button>
         <span>data:{this.props.consumerData}</span>
+        <span>data:{this.context}</span>
       </div>
     );
   }

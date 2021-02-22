@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const array1 = [1, 2, 3, 4];
+      const array2 = [{ a: "a" }, { b: "a" }, { c: "a" }, { d: "a" }];
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      // 1 + 2 + 3 + 4
+      console.log(
+        array1.reduce((accumulator, currentValue) => accumulator + currentValue)
+      );
+      // 5 + 1 + 2 + 3 + 4
+      console.log(
+        array2.reduce((accumulator, currentValue) => accumulator + currentValue)
+      );
+    </script>
+  </body>
+</html>

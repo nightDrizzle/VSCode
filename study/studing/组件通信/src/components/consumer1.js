@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { DataContext } from "./dataContext";
 
-class Button extends React.Component {
-  render() {
-    return;
-  }
-}
-
 export default class Consumer1 extends Component {
   static contextType = DataContext;
   render() {
