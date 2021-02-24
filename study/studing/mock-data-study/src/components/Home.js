@@ -7,6 +7,7 @@ export default class App extends Component {
     this.state = { num: store.getState() };
   }
   componentDidMount() {
+    c;
     store.subscribe(() => {
       this.setState({ num: store.getState() });
     });
