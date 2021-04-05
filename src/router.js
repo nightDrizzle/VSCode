@@ -12,8 +12,7 @@ function RouterConfig({ history }) {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/docs" exact component={Docs} />
-          <Route path="/study" exact component={Antd} />
-          <Route path="/study/antd" exact component={Study} />
+          <Route path="/antd" exact component={Antd} />
         </Switch>
       </main>
     </Router>

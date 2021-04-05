@@ -1,8 +1,10 @@
+/**
+ * @file Home/index.js 首页
+ * @author nightDrizzle@outlook.com
+ */
 import React from "react";
 import { connect } from "dva";
-import { Menu } from "antd";
-import "antd/dist/antd.css";
-import MenuAbove from "./components/MenuAbove";
+import { Link } from "dva/router";
 class Home extends React.Component {
   state = {
     current: "mail",
@@ -14,7 +16,19 @@ class Home extends React.Component {
   };
 
   render() {
-    return <MenuAbove />;
+    return (
+      <ul>
+        <li>
+          <Link to="/">首页</Link>
+        </li>
+        <li>
+          <Link to="/docs">文档</Link>
+        </li>
+        <li>
+          <Link to="/antd">antd</Link>
+        </li>
+      </ul>
+    );
   }
 }
 
