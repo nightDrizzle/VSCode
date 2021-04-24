@@ -5,8 +5,8 @@
 import React from "react";
 import { connect } from "dva";
 import "antd/dist/antd.css";
-import MenuAbove from "./components/MenuAbove";
-import MenuCheckMode from "./components/MenuCheckMode";
+// import MenuAbove from "./components/MenuAbove";
+// import MenuCheckMode from "./components/MenuCheckMode";
 import MenuTheme from "./components/MenuTheme";
 class Antd extends React.Component {
   constructor(props) {
