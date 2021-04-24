@@ -1,9 +1,9 @@
 import React from "react";
-import { Router, Route, Switch, Link } from "dva/router";
+import { Router, Route, Switch } from "dva/router";
 import Home from "./routes/Home/index";
 import Docs from "./routes/Docs/index";
 import Antd from "./routes/Antd/index";
-import Study from "./routes/Study/index";
+// import Study from "./routes/Study/index";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>

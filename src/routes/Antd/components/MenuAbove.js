@@ -2,11 +2,7 @@ import React from "react";
 import { connect } from "dva";
 import { Menu } from "antd";
 import "antd/dist/antd.css";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { MailOutlined, SettingOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 class MenuAbove extends React.Component {
