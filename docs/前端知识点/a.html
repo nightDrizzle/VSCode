@@ -7,8 +7,27 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
     <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <h1>a</h1>
+    <script>
+      var obj = {
+        name: "zs",
+        sex: "man",
+        tel: 110,
+        address: "上海市",
+      };
+      var person = Object.create(obj);
+      person.work = "coder";
+      // console.dir(person);
+      console.log(Object.keys(person));
+      for (const key in person) {
+        console.log(key);
+      }
+    </script>
   </body>
 </html>

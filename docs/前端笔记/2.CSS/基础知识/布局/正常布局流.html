@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      body {
+        background: cyan;
+      }
+      .float-l {
+        float: left;
+        background: green;
+      }
+      .float-r {
+        float: right;
+      }
+      .text {
+        /* margin: 10px; */
+        background: orange;
+      }
+      .box {
+        /* position: none; */
+        top: 100px;
+        border: 2px solid red;
+        width: 1000px;
+        height: 500px;
+        background: #fff;
+      }
+      .item {
+        /* float: left; */
+        width: 500px;
+        height: 80px;
+        background: #ccc;
+        border: 3px solid black;
+      }
+      .item2 {
+        /* height: 120px; */
+        /* width: 130px; */
+      }
+      .bfc {
+        position: absolute;
+        /* left: 30px; */
+        background: green;
+      }
+
+      .ifc {
+        /* border: 10px solid black; */
+        padding-bottom: 10px;
+        background: #000;
+      }
+      .clearfix {
+        clear: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="item">box1</div>
+      <div class="item item2 float-l">box2</div>
+      <p>1211e312asfdafasfsojfhajksdnnfcoas asndasjpdjapsjdpaisjdasp</p>
+
+      <div class="item float-r">box3</div>
+      <div class="item clearfix">box4</div>
+    </div>
+    <!-- <span class="text">span</span> -->
+    <script></script>
+  </body>
+</html>

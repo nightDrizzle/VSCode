@@ -1,0 +1,13 @@
+用户代理
+文档类型定义 Document Type Definition，DTD
+文档对象模型 Document Object Model
+接口定义语言 Interface Definition Language，IDL
+ECMAScript  
+巴科斯-诺尔范式
+文档流
+BFC块级格式化上下文 IFC
+内联方向
+视觉格式化模型
+包含块 containing block
+层叠上下文
+视口 (viewport)
