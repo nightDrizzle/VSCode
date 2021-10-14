@@ -1,6 +1,0 @@
-{
-  "editor.tabSize": 2,
-  "editor.fontSize": 14,
-  "git.ignoreLimitWarning": true,
-  "editor.formatOnSave": true // 保存时自动格式化
-}
