@@ -11,3 +11,5 @@ BFC块级格式化上下文 IFC
 包含块 containing block
 层叠上下文
 视口 (viewport)
+事件循环
+计算值 应用值 初始值 指定值 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="content">
+
+  </div>
+  <script>
+    function f1(x) {
+      // 函数内部作用域
+      var name = 'f1';
+
+      function f2(y) {
+        return {
+          value: x + y,
+          name: 'f1',
+        };
+      }
+      return f2
+    }
+    // 函数外部作用域
+    var a = f1(1)(2);
+    console.log('a:', a);
+
+    // 其他函数作用域
+    function f3() {
+      var b = f1(1)(2);
+      console.log('b:', b);
+    }
+    f3()
+
+  </script>
+</body>
+
+</html>

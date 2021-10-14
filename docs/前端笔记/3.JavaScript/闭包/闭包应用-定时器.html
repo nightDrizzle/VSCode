@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>闭包之定时器传参</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="content">
+
+  </div>
+  <script>
+    function fun(value) {
+      return function () {
+        console.log(value);
+      }
+    }
+    // setTimeout(fun(12), 10000);
+    setInterval(fun(12), 1000);
+
+  </script>
+</body>
+
+</html>

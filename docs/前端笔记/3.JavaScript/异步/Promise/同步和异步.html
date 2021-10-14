@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="content">
+
+  </div>
+  <script>
+    /*
+     * 1 > 2 > 3进入饭店  2 1 3 点餐顺序（自由点餐：谁点的快谁先得）
+     */
+    class Sence1 {
+      mission1() {
+        console.log('客人1进入饭店');
+      }
+
+      mission2() {
+        console.log('客人2进入饭店');
+      }
+
+      mission3() {
+        console.log('客人3进入饭店');
+      }
+    }
+    // let sence1 = new Sence1()
+    // sence1.mission1()
+    // sence1.mission2()
+    // sence1.mission3()
+
+    class AcyncScence extends Sence1 {
+      asynchronous(init, callback) {
+        init()
+        setTimeout(() => {
+          callback()
+        }, 1000); // 伪异步
+      }
+    }
+    let as = new AcyncScence()
+    let init = function () {
+      setTimeout(() => {
+        console.log('某人10 min吃完了饭');
+      }, 1000);
+
+    }
+    let result = function () {
+      console.log('success');
+    }
+    as.asynchronous(init, result)
+    /*
+     * 先到先得：1进入+点餐>2进入+点餐>3进入+点餐
+     */
+    class Sence2 extends Sence1 {
+      mission1() {
+        console.log('客人1进入饭店');
+        setTimeout(() => {
+          console.log('客人1点餐');
+        }, 5000);
+      }
+
+      mission2() {
+        console.log('客人2进入饭店');
+        setTimeout(() => {
+          console.log('客人2点餐');
+        }, 2000);
+      }
+
+      mission3() {
+        console.log('客人3进入饭店');
+        setTimeout(() => {
+          console.log('客人3点餐');
+        }, 6000);
+      }
+    }
+    let sence2 = new Sence2()
+    // let a = sence2.mission3(sence2.mission2(sence2.mission1()))
+    // let promise = new Promise(resole,reject=> {
+    //   resole()
+    // })
+
+  </script>
+</body>
+
+</html>
